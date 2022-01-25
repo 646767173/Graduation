@@ -1,0 +1,47 @@
+.banner_body, .banner_item, .banner_item image{
+		width: 100%
+}
+
+.container{
+	margin: 44rpx;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.container .body{
+	width: 310rpx;
+	height: 310rpx;
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	margin: 8rpx;
+}
+.container .body:hover{
+	box-shadow: 0 0 5px 1px #1296db;
+}
+
+.container .body .icon{
+	width: 160rpx;
+	height: 160rpx;
+	background-color: #1296db;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	border-radius: 50%;
+	top: 30rpx;
+}
+
+.container .body .icon image{
+	width: 90rpx;
+	height: 86rpx;
+}
+
+.container .body .text{
+	margin-top: 190rpx;
+	font-size: 42rpx;
+	color: #1296db;
+}

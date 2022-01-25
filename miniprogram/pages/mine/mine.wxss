@@ -1,0 +1,73 @@
+/* 登录信息样式 */
+.info{
+	width: 80%;
+	background-color: #1296db;
+	display: flex;
+	border-radius: 10rpx;
+	margin: 0 auto;
+	padding: 50rpx 40rpx;
+	align-items: center;
+}
+
+.info .avatar{
+	width: 110rpx;
+	height: 110rpx;
+	border-radius: 50%;
+}
+
+.info .name{
+	display: flex;
+	flex-direction: column;
+	color: #fff;
+	margin-left: 40rpx;
+}
+
+.info .name text:nth-child(2){
+	margin-top: 10rpx;
+}
+
+.info .load{
+	width: 50rpx;
+	height: 50rpx;
+	margin-left: auto;
+}
+
+/* 功能区样式 */
+.functions{
+	display: flex;
+	width: 80%;
+	background-color: #fff;
+	margin: 0 auto;
+	justify-content: space-between;
+	align-items: center;
+	padding: 24rpx 40rpx;
+	margin-top: 2rpx;
+}
+
+.functions .left{
+	display: flex;
+	align-items: center;
+}
+
+.functions .left image{
+	width: 50rpx;
+	height: 50rpx;
+}
+
+.functions .left text{
+	margin-left: 20rpx;
+}
+
+.functions .right{
+	color: #999;
+}
+
+.version{
+	width: 100%;
+	text-align: center;
+	color: #998;
+}
+
+.mt{
+	margin-top: 60rpx;
+}

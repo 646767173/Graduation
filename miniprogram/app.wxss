@@ -1,0 +1,4 @@
+/* #1296db程序主题色 */
+page{
+	background-color: #f3f3f3;
+}

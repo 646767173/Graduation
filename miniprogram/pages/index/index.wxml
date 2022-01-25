@@ -1,0 +1,18 @@
+<!-- 轮播图 -->
+<view class="banner">
+  <swiper indicator-dots="true" autoplay="true" class="banner_body">
+    <swiper-item wx:for="{{ banner }}" wx:key="index" class="banner_item">
+      <image src="{{ item }}" mode="widthFix"></image>
+    </swiper-item>
+  </swiper>
+</view>
+
+<!-- 易送功能区 -->
+<view class="container">
+  <view class="body" wx:for="{{indexFunctions}}" wx:key="index">
+    <view class="icon">
+      <image src="{{item.icon}}"></image>
+    </view>
+    <text class="text">{{item.text}}</text>
+  </view>
+</view>

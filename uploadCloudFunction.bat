@@ -1,0 +1,1 @@
+"E:\Program Files\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-4gllbbo915a67df0 --n quickstartFunctions --r --project "E:\系统默认\桌面\SED"

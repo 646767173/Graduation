@@ -1,0 +1,60 @@
+<!--pages/mine/mine.wxml-->
+<view class="info">
+	<image class="avatar" src="{{ hasUserInfo ? userInfo.avatarUrl : '../../images/info.png'}}"></image>
+	<block wx:if="{{!hasUserInfo}}">
+		<button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">
+			点击授权登录
+		</button>
+		<button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+			点击授权登录
+		</button><!--兼容老版本的获取用户信息-->
+		
+	</block>
+	<view class="name" wx:if="{{hasUserInfo}}">
+		<text>{{userInfo.nickName}}</text>
+		<text>{{userInfo.gender === 0 ? '男' : '女'}}</text>
+	</view>
+	<image wx:if="{{hasUserInfo}}" class="load" src="../../images/right.png"></image>
+</view>
+
+<view class="functions mt">
+	<view class="left">
+		<image src="../../images/YuE.png"></image>
+		<text>我的余额</text>
+	</view>
+	<text class="right">〉</text>
+</view>
+
+<view class="functions mt">
+	<view class="left">
+		<image src="../../images/GeRenXinXi.png"></image>
+		<text>个人信息</text>
+	</view>
+	<text class="right">〉</text>
+</view>
+
+<view class="functions">
+	<view class="left">
+		<image src="../../images/ZhangHaoAnQuan.png"></image>
+		<text>账号安全</text>
+	</view>
+	<text class="right">〉</text>
+</view>
+
+<view class="functions">
+	<view class="left">
+		<image src="../../images/GuanYuWoMen.png"></image>
+		<text>关于我们</text>
+	</view>
+	<text class="right">〉</text>
+</view>
+
+<view class="functions">
+	<view class="left">
+		<image src="../../images/BangZhuFanKui.png"></image>
+		<text>帮助反馈</text>
+	</view>
+	<text class="right">〉</text>
+</view>
+
+<view class="version mt">当前版本：v0.0.2</view>
