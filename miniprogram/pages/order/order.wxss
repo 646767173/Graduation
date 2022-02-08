@@ -1,1 +1,108 @@
-/* pages/order/order.wxss */
+.scroll_view{
+		background-color: #fff;
+		white-space: nowrap;
+}
+
+.tab{
+	display: flex;
+	text-align: center;
+}
+
+.tab .tab_item{
+	height: 90rpx;
+	display: inline-block;
+	line-height: 90rpx;
+	margin: 0 10rpx;
+	padding: 0 10rpx;
+	flex: 1;
+}
+
+.select{
+	color: #1296db;
+	border-bottom: 4rpx solid #1296db;
+}
+
+.body .tips{
+	width: 100%;
+	background-color: skyblue;
+	text-align: center;
+	color: #fff;
+	padding: 10rpx 0;
+}
+
+.order{
+	background-color: #fff;
+	width: 85%;
+	margin: 0 auto;
+	border-radius: 25rpx;
+	padding: 25rpx;
+	margin-top: 30rpx;
+}
+
+.order .order_top{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.order .order_top .top_left{
+	display: flex;
+}
+
+.order .order_top .top_left image{
+	width: 60rpx;
+	height: 60rpx;
+	border-radius: 50%;
+}
+
+.order .order_top .top_left .name{
+	display: flex;
+	flex-direction: column;
+	margin-left: 20rpx;
+}
+
+.order .order_top .top_left .name text:nth-child(2){
+	color: #aaa;
+	font-size: 26rpx;
+}
+
+.order .order_top .top_right{
+	color: rgb(92, 185, 156);
+	background-color: rgba(92, 185, 156, 0.3);
+	padding: 15rpx;
+	font-size: 28rpx;
+}
+
+.order .order_content{
+	padding-left: 70rpx;
+	padding-top: 20rpx;
+}
+
+.order .order_content .address{
+	color: #1296db;
+	font-size: 30rpx;
+}
+
+.order .order_bottom{
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 15rpx;
+}
+
+.order .order_bottom .money{
+	color: rgb(255, 102, 102);
+	background-color: rgba(255, 102, 102, 0.3);
+	padding: 14rpx 26rpx;
+	border-radius: 18rpx;
+	font-size: 28rpx;
+}
+
+.order .order_bottom .accept{
+	color: #fff;
+	background-color: #1296db;
+	padding: 14rpx 56rpx;
+	margin-left: 18rpx;
+	border-top-left-radius: 18rpx;
+	border-bottom-right-radius: 18rpx;
+	font-size: 28rpx;
+}

@@ -1,2 +1,49 @@
-<!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+<scroll-view scroll-x class="scroll-view">
+	<view class="tab">
+		<view class="tab_item {{tabNow === index ? 'select' : ''}}" wx:for="{{ tabList }}" wx:key="index" data-id="{{index}}" bindtap="selectTab">
+			{{ item }}
+		</view>
+	</view>
+</scroll-view>
+
+<view wx:if="{{tabNow === 0}}" class="body">
+<!-- 只有是当前页才会展示对应的内容 -->
+	<view class="tips">
+		向上滑动以刷新~
+	</view>
+	<view class="order" wx:for="{{4}}" wx:key="index">
+		<view class="order_top">
+			<view class="top_left">
+				<image src="../../images/mine(1).png"></image>
+				<view class="name">
+					<text>租借服务</text>
+					<text>2天前</text>
+				</view>
+			</view>
+
+			<view class="top_right">
+				待帮助
+			</view>
+
+		</view>
+
+		<view class="order_content">
+			<view class="content">
+				这里是内容区，内容区内容区内容区这里是内容区，内容区内容区内容区这里是内容区，内容区内容区内容区
+				时间：00:01 租借时长：30分钟归还
+			</view>
+			<view class="address">
+				目的地：其他区域-其他区域-其他区域
+			</view>
+		</view>
+
+		<view class="order_bottom">
+			<view class="money">
+				金额¥100
+			</view>
+			<view class="accept">
+				接单
+			</view>
+		</view>
+	</view>
+</view>

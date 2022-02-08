@@ -5,9 +5,16 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
+		tabList:['全部','我的订单','我帮助的','正在悬赏'],
+		tabNow:0,//当前选中的数组下标，默认是全部
 
 	},
-
+	selectTab(e){
+		this.setData({
+			tabNow:e.currentTarget.dataset.id//将当前下标赋值给tabNow
+		})
+	}
+	,
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
