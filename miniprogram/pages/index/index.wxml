@@ -9,7 +9,7 @@
 
 <!-- 易送功能区 -->
 <view class="container">
-  <view class="body" wx:for="{{indexFunctions}}" wx:key="index">
+  <view class="body" wx:for="{{indexFunctions}}" wx:key="index" data-url="{{item.url}}" bindtap="toDetail">
     <view class="icon">
       <image src="{{item.icon}}"></image>
     </view>

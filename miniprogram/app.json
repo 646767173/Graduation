@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/order/order",
     "pages/mes/mes",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/getExpress/getExpress"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -1,0 +1,63 @@
+<view class="container">
+	<view class="title">快递大小</view>
+		<view class="type line">
+			<view class="{{typeNow === index ? 'selectType' : ''}}" wx:for="{{typeList}}" wx:key="index" data-id="{{index}}" data-mes="{{item.mes}}" bindtap="selectType">{{item.name}}</view>
+		</view>
+		<view class="address line">
+			<text>收件地址：</text>
+			<text>请选择地址 〉</text>
+		</view>
+		<view class="address line">
+			<text>快递商家：</text>
+			<text>请选择快递点 〉</text>
+		</view>
+		<view class="address">
+			<text>取件详情信息：</text>
+		</view>
+		<view class="detail">
+			<textarea class="content" cols="20" rows="6" placeholder="请输入取件码或上传截图">
+				<image src="../../images/image.png"></image>
+			</textarea>
+		</view>
+		<view class="address line">
+			<text>备注信息：</text>
+			<input type="text" placeholder="此消息所有人可见"></input>
+		</view>
+		<view class="address line">
+			<text>更多要求：</text>
+			<text style="color: #1296db" bindtap="showMore" wx:if="{{showMore}}">显示 〉</text>
+			<text style="color: #1296db" bindtap="showMore" wx:else>隐藏 〉</text>
+		</view>
+		<view class="show" wx:if="{{showMore}}">
+			<view class="address line dialogWidth">
+				<text>期望送达：</text>
+				<text>不限时间 〉</text>
+			</view>
+			<view class="address line dialogWidth">
+				<text>性别限制：</text>
+				<text>不限性别 〉</text>
+			</view>
+			<view class="address line dialogWidth">
+				<text>快递数量：</text>
+				<text>1个 〉</text>
+			</view>
+			<view class="address line dialogWidth">
+				<text>加急打赏：</text>
+				<switch bindchange="handleChangeReward"></switch>
+			</view>
+			<view class="address line dialogWidth" wx:if="{{isReward}}">
+				<text>额外赏金：</text>
+				<input type="text" placeholder="输入赏金"/>
+			</view>
+		</view>
+		<view class="bottom_tip">
+			<text>信息仅接单的同学可见!</text>
+			<text>需支付</text>
+			<text>3元</text>
+		</view>
+		<button type="submit" class="submit">立即发布</button>
+		<view class="statement">
+			<text>免责声明</text>
+			<text>用户条款&隐私策略</text>
+		</view>
+</view>
