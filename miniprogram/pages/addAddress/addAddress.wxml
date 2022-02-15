@@ -1,0 +1,44 @@
+<view class="body">
+	<view class="body_item">
+		<view class="left">
+			<image src="../../images/building.png"></image>
+			<text>选择楼栋</text>
+		</view>
+		<view class="right" bindtap="selectBuilding">
+			<text>点击选择 〉</text>
+		</view>
+	</view>
+	<view class="body_item">
+		<view class="left">
+			<image src="../../images/location.png"></image>
+			<text>选择门号</text>
+		</view>
+		<view class="right">
+			<input type="text" placeholder="请输入门号" />
+		</view>
+	</view>
+	<view class="body_item">
+		<view class="left">
+			<image src="../../images/receiver.png"></image>
+			<text>收件姓名</text>
+		</view>
+		<view class="right">
+			<input type="text" placeholder="请输入姓名" />
+		</view>
+	</view>
+	<view class="body_item">
+		<view class="left">
+			<image src="../../images/phone.png"></image>
+			<text>收件电话</text>
+		</view>
+		<view class="right">
+			<input type="text" placeholder="请输入电话" />
+		</view>
+	</view>
+	<view class="default">
+		<text>是否设置为默认地址</text>
+		<switch checked="{{defaultAddress}}"></switch>
+	</view>
+	<button class="save">保存地址</button>
+	<text class="tip">地址说明</text>
+</view>

@@ -1,4 +1,4 @@
-<scroll-view scroll-x class="scroll-view">
+<scroll-view scroll-x class="scroll_view">
 	<view class="tab">
 		<view class="tab_item {{tabNow === index ? 'select' : ''}}" wx:for="{{ tabList }}" wx:key="index" data-id="{{index}}" bindtap="selectTab">
 			{{ item }}

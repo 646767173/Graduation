@@ -4,7 +4,10 @@
     "pages/order/order",
     "pages/mes/mes",
     "pages/mine/mine",
-    "pages/getExpress/getExpress"
+    "pages/getExpress/getExpress",
+    "pages/address/address",
+    "pages/addAddress/addAddress",
+    "pages/selectBuilding/selectBuilding"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

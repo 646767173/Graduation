@@ -22,7 +22,41 @@ Page({
 		typeNow:0,
 		showMore:false,
 		isReward:false,
+		businessIndex:0,
+		businessArray:['顺丰速递','京东快递','圆通速递','韵达快递','中通快递','申通快递','其他快递'],
+		selectBusiness:false,
+		timeIndex:0,
+		timeArray:['不限时间','尽快送达','今天中午1点前','今天晚上8点前'],
+		genderIndex:0,
+		genderArray:['不限性别','仅限男生','仅限女生'],
+		amountIndex:0,
+		amountArray:['1个','2个','3个(+1元)','3~5个(+2元)','5~7个(+3元)'],
 	},
+	bindAmount(e){
+		this.setData({
+			amountIndex:e.detail.value,
+		})
+	}
+	,
+	bindGender(e){
+		this.setData({
+			genderIndex:e.detail.value,
+		})
+	}
+	,
+	bindBusiness(e){
+		this.setData({
+			businessIndex:e.detail.value,
+			selectBusiness:true,
+		})
+	}
+	,
+	bindTime(e){
+		this.setData({
+			timeIndex:e.detail.value,
+		})
+	}
+	,
 	selectType(e){
 		const {id,mes} = e.currentTarget.dataset;
 		this.setData({
@@ -42,6 +76,11 @@ Page({
 		const value = e.detail.value;
 		this.setData({
 			isReward:value,
+		})
+	},
+	selectAddress(e){
+		wx.navigateTo({
+			url: '../address/address',
 		})
 	},
 	/**

@@ -77,6 +77,24 @@
           "pathName": "pages/getExpress/getExpress",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/address/address",
+          "pathName": "pages/address/address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/addAddress/addAddress",
+          "pathName": "pages/addAddress/addAddress",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/selectBuilding/selectBuilding",
+          "pathName": "pages/selectBuilding/selectBuilding",
+          "query": "",
+          "scene": null
         }
       ]
     }

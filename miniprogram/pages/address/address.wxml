@@ -1,0 +1,33 @@
+<view class="body">
+	<image class="noneImg" src="../../images/empty.png" wx:if="{{false}}"></image>
+	<view class="noneData" wx:if="{{false}}">
+		---暂无数据---
+	</view>
+
+	<view class="address">
+		<text>我的地址：北区宿舍-8号楼-101</text>
+		<text>联系方式：小何-12345678910</text>
+		<view class="address_bottom">
+			<view class="bottom_left">
+				<image class="iconSize" src="../../images/success.png"></image>
+				<text>默认地址</text>
+			</view>
+			<view class="bottom_right">
+				<view class="edit">
+					<image class="iconSize" src="../../images/edit.png"></image>
+					<text>编辑</text>
+				</view>
+				<view class="delete">
+					<image class="iconSize" src="../../images/delete.png"></image>
+					<text>删除</text>
+				</view>
+			</view>
+		</view>
+
+	</view>
+
+	<view class="showAll">
+		————<text> 已显示全部 </text>————
+	</view>
+	<button class="addAddress" bindtap="addAddress">添加地址</button>
+</view>

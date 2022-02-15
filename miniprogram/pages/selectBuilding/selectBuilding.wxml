@@ -1,0 +1,47 @@
+<scroll-view scroll-x class="scroll_view">
+	<view class="tab">
+		<view class="tab_item {{tabNow === index ? 'select' : ''}}" wx:for="{{ tabList }}" wx:key="index" data-id="{{index}}" bindtap="selectTab">
+			{{ item }}
+		</view>
+	</view>
+</scroll-view>
+
+<view wx:if="{{tabNow===0}}" class="body">
+	<view class="item" wx:for="{{8}}" wx:key="index">
+		{{index + 2 }} 层
+	</view>
+</view>
+
+<view wx:if="{{tabNow===1}}" class="body">
+	<view class="item" wx:for="{{9}}" wx:key="index">
+		{{index + 1 }} 层
+	</view>
+</view>
+
+
+<view wx:if="{{tabNow===2}}" class="body">
+	<view class="item" wx:for="{{5}}" wx:key="index">
+		{{index + 1 }} 层
+	</view>
+</view>
+
+<view wx:if="{{tabNow===3}}" class="body">
+	<view class="item" wx:for="{{9}}" wx:key="index">
+		{{index + 1 }} 层
+	</view>
+</view>
+
+<view wx:if="{{tabNow===4}}" class="body">
+	<view class="item" wx:for="{{3}}" wx:key="index">
+		{{index + 7 }} 栋
+	</view>
+</view>
+
+<view wx:if="{{tabNow===5}}" class="body">
+	<view class="item" wx:for="{{6}}" wx:key="index">
+		{{item}} 栋
+	</view>
+</view>
+
+
+<view class="showAll">————已显示全部————</view>
