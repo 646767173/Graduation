@@ -34,7 +34,7 @@
 	color: orange !important;
 }
 
-.container .address{
+.container .item{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -43,12 +43,12 @@
 	margin-top: 40rpx;
 }
 
-.container .address input{
+.container .item input{
 	text-align: end;
 	-webkit-text-fill-color: #a1a1a1;
 }
 
-.container .address text:nth-child(2){
+.container .item text:nth-child(2){
 	color: #a1a1a1;
 }
 
@@ -63,14 +63,6 @@
 	border: 4rpx solid #d1d1d1;
 	width: 90%;
 	justify-content: center;
-}
-
-.container .detail .content image{
-	position: absolute;
-	width: 60rpx;
-	height: 60rpx;
-	bottom: 20rpx;
-	right: 30rpx;
 }
 
 .container .bottom_tip{

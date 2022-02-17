@@ -28,8 +28,8 @@
 		</view>
 		<view class="address line">
 			<text>更多要求：</text>
-			<text style="color: #1296db" bindtap="showMore" wx:if="{{showMore}}">显示 〉</text>
-			<text style="color: #1296db" bindtap="showMore" wx:else>隐藏 〉</text>
+			<text style="color: #1296db" bindtap="showMore" wx:if="{{showMore}}">隐藏 〉</text>
+			<text style="color: #1296db" bindtap="showMore" wx:else>显示 〉</text>
 		</view>
 		<view class="show" wx:if="{{showMore}}">
 			<view class="address line dialogWidth">

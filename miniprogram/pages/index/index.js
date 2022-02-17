@@ -15,15 +15,18 @@ Page({
       },
       {
         icon:'../../images/Gouwu.png',
-        text:'帮我买'
+        text:'帮我买',
+        url:'../buy/buy'
       },
       {
         icon:'../../images/Kuaisong.png',
-        text:'帮我送'
+        text:'帮我送',
+        url:'../deliver/deliver'
       },
       {
         icon:'../../images/Banli.png',
-        text:'帮我办'
+        text:'帮我办',
+        url:'../handle/handle'
       }
     ]
   },

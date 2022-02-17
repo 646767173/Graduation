@@ -29,12 +29,7 @@
 	padding: 20rpx 45rpx;
 }
 
-.selectType{
-	border-color: orange !important;
-	color: orange !important;
-}
-
-.container .address{
+.container .item{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -43,34 +38,18 @@
 	margin-top: 40rpx;
 }
 
-.container .address input{
+.container .item input{
 	text-align: end;
 	-webkit-text-fill-color: #a1a1a1;
 }
 
-.container .address text:nth-child(2){
+.container .item image{
+	width: 80rpx;
+	height: 80rpx;
+}
+
+.container .item text:nth-child(2){
 	color: #a1a1a1;
-}
-
-.container .detail{
-	margin-top: 15rpx;
-	display: flex;
-	justify-content: center;
-	position: relative;
-}
-
-.container .detail .content{
-	border: 4rpx solid #d1d1d1;
-	width: 90%;
-	justify-content: center;
-}
-
-.container .detail .content image{
-	position: absolute;
-	width: 60rpx;
-	height: 60rpx;
-	bottom: 20rpx;
-	right: 30rpx;
 }
 
 .container .bottom_tip{
@@ -79,8 +58,10 @@
 	text-align: center;
 	margin-top: 30rpx;
 }
-.container .bottom_tip text:nth-child(1){ color: #a1a1a1; }
-.container .bottom_tip text:nth-child(3){ color: red;}
+.container .bottom_tip text{ font-size: 28rpx; color: #919191; }
+.container .bottom_tip text:nth-child(5){ margin-top: 10rpx; font-size: 36rpx; color: black; }
+.container .bottom_tip text:last-child{ margin-top: 10rpx; font-size: 36rpx; }
+.color_red{ color: red !important; }
 
 .container .submit{
 	width: 90%;
@@ -99,8 +80,4 @@
 }
 .container .statement text{
 	margin-left: 30rpx;
-}
-
-.dialogWidth{
-	width: 80% !important;
 }

@@ -7,7 +7,10 @@
     "pages/getExpress/getExpress",
     "pages/address/address",
     "pages/addAddress/addAddress",
-    "pages/selectBuilding/selectBuilding"
+    "pages/selectBuilding/selectBuilding",
+    "pages/buy/buy",
+    "pages/deliver/deliver",
+    "pages/handle/handle"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

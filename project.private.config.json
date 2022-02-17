@@ -95,6 +95,36 @@
           "pathName": "pages/selectBuilding/selectBuilding",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/buy/buy",
+          "pathName": "pages/buy/buy",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/getExpress/getExpress",
+          "pathName": "pages/getExpress/getExpress",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/buy/buy",
+          "pathName": "pages/buy/buy",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/deliver/deliver",
+          "pathName": "pages/deliver/deliver",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/handle/handle",
+          "pathName": "pages/handle/handle",
+          "query": "",
+          "scene": null
         }
       ]
     }
