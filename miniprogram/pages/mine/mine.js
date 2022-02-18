@@ -9,7 +9,13 @@ Page({
 		hasUserInfo:false,
 		canIUseGetUserProfile:false,
 	},
-
+	updateInfo(){
+		if(this.data.hasUserInfo){
+			wx.navigateTo({
+				url: '../updateInfo/updateInfo',
+			})
+		}
+	},
 	// 新接口的方法
 	getUserProfile(){
 		wx.getUserProfile({

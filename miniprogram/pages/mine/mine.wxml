@@ -1,5 +1,4 @@
-<!--pages/mine/mine.wxml-->
-<view class="info">
+<view class="info" bindtap="updateInfo">
 	<image class="avatar" src="{{ hasUserInfo ? userInfo.avatarUrl : '../../images/info.png'}}"></image>
 	<block wx:if="{{!hasUserInfo}}">
 		<button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">
@@ -24,16 +23,16 @@
 	</view>
 	<text class="right">〉</text>
 </view>
-
+<!-- 
 <view class="functions mt">
 	<view class="left">
 		<image src="../../images/GeRenXinXi.png"></image>
 		<text>个人信息</text>
 	</view>
 	<text class="right">〉</text>
-</view>
+</view> -->
 
-<view class="functions">
+<view class="functions mt">
 	<view class="left">
 		<image src="../../images/ZhangHaoAnQuan.png"></image>
 		<text>账号安全</text>

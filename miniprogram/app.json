@@ -10,7 +10,8 @@
     "pages/selectBuilding/selectBuilding",
     "pages/buy/buy",
     "pages/deliver/deliver",
-    "pages/handle/handle"
+    "pages/handle/handle",
+    "pages/updateInfo/updateInfo"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
