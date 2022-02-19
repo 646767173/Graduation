@@ -9,6 +9,14 @@ Page({
 		tabNow:0,
 		nanqu:['A','B','C','D','E','F']
 	},
+	selectBuilding(e){
+		const that = this.data;
+		const index = e.currentTarget.dataset.index;
+		const build = `${that.tabList[that.tabNow]}-${index+2}层`;
+		wx.navigateTo({
+			url: `../addAddress/addAddress?build=${build}`,
+		})
+	},
 	selectTab(e){
 		const id = e.currentTarget.dataset.id;
 		this.setData({

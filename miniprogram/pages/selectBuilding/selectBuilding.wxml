@@ -7,7 +7,7 @@
 </scroll-view>
 
 <view wx:if="{{tabNow===0}}" class="body">
-	<view class="item" wx:for="{{8}}" wx:key="index">
+	<view class="item" wx:for="{{8}}" wx:key="index" bindtap="selectBuilding" data-index="{{index}}">
 		{{index + 2 }} 层
 	</view>
 </view>

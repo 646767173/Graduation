@@ -5,7 +5,7 @@
 			<text>选择楼栋</text>
 		</view>
 		<view class="right" bindtap="selectBuilding">
-			<text>点击选择 〉</text>
+			<text>{{ build ? build : '点击选择'}} 〉</text>
 		</view>
 	</view>
 	<view class="body_item">
@@ -14,7 +14,7 @@
 			<text>选择门号</text>
 		</view>
 		<view class="right">
-			<input type="text" placeholder="请输入门号" />
+			<input type="text" bindinput="getHouseNumber" value="{{houseNumber}}" placeholder="请输入门号" />
 		</view>
 	</view>
 	<view class="body_item">
@@ -23,7 +23,7 @@
 			<text>收件姓名</text>
 		</view>
 		<view class="right">
-			<input type="text" placeholder="请输入姓名" />
+			<input type="text" bindinput="getName" value="{{name}}" placeholder="请输入姓名" />
 		</view>
 	</view>
 	<view class="body_item">
@@ -32,13 +32,13 @@
 			<text>收件电话</text>
 		</view>
 		<view class="right">
-			<input type="text" placeholder="请输入电话" />
+			<input type="text" bindinput="getPhone" value="{{phone}}" placeholder="请输入电话" />
 		</view>
 	</view>
 	<view class="default">
 		<text>是否设置为默认地址</text>
-		<switch checked="{{defaultAddress}}"></switch>
+		<switch checked="{{defaultAddress}}" bindchange="changeSwitch"></switch>
 	</view>
-	<button class="save">保存地址</button>
+	<button class="save" bindtap="save">保存地址</button>
 	<text class="tip">地址说明</text>
 </view>

@@ -1,23 +1,23 @@
 <view class="body">
-	<image class="noneImg" src="../../images/empty.png" wx:if="{{false}}"></image>
-	<view class="noneData" wx:if="{{false}}">
+	<image class="noneImg" src="../../images/empty.png" wx:if="{{address.length === 0}}"></image>
+	<view class="noneData" wx:if="{{address.length === 0}}">
 		---暂无数据---
 	</view>
 
-	<view class="address">
-		<text>我的地址：北区宿舍-8号楼-101</text>
-		<text>联系方式：小何-12345678910</text>
+	<view class="address" wx:for="{{address}}" wx:key="index">
+		<text>我的地址：{{item.build}}-{{item.houseNumber}}</text>
+		<text>联系方式：{{item.name}}-{{item.phone}}</text>
 		<view class="address_bottom">
-			<view class="bottom_left">
+			<view class="bottom_left" wx:if="{{item.defaultAddress}}">
 				<image class="iconSize" src="../../images/success.png"></image>
 				<text>默认地址</text>
 			</view>
 			<view class="bottom_right">
-				<view class="edit">
+				<view class="edit" bindtap="edit" data-index="{{index}}">
 					<image class="iconSize" src="../../images/edit.png"></image>
 					<text>编辑</text>
 				</view>
-				<view class="delete">
+				<view class="delete" bindtap="delete" data-index="{{index}}">
 					<image class="iconSize" src="../../images/delete.png"></image>
 					<text>删除</text>
 				</view>

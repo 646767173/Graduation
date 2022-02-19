@@ -5,18 +5,50 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-
+		address:[],
 	},
 	addAddress(e){
 		wx.navigateTo({
 			url: '../addAddress/addAddress',
 		})
 	},
+	edit(e){
+		const index = e.currentTarget.dataset.index;
+		const address = this.data.address[index];
+		wx.navigateTo({
+			url: `../addAddress/addAddress?address=${JSON.stringify(address)}&index=${index}`,
+		})
+	},
+	delete(e){
+		const that = this;
+		wx.showModal({
+			title:'是否删除？',
+			confirmText:'删除',
+			cancelText:'取消',
+			success:function (res) {
+				if (res.confirm) {
+					const index = e.currentTarget.dataset.index;
+					const address = that.data.address;
+					address.splice(index,1);
+					wx.setStorageSync('address', address);
+					wx.showToast({
+						title: '删除成功',
+					})
+					that.onLoad();
+				} else {
+					return;
+				}
+			}
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		const address = wx.getStorageSync('address');
+		this.setData({
+			address,
+		})
 	},
 
 	/**
