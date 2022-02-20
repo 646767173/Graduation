@@ -1,6 +1,5 @@
 // pages/mine/mine.js
 Page({
-
 	/**
 	 * 页面的初始数据
 	 */
@@ -9,12 +8,28 @@ Page({
 		hasUserInfo:false,
 		canIUseGetUserProfile:false,
 	},
+	/* 
+		复制内容data到剪切板
+		wx.setClipboardData({
+			data: 'data',
+			success:()=>{
+				wx.showToast({
+					title: '复制成功',
+				})
+			}
+		})
+	*/
 	updateInfo(){
 		if(this.data.hasUserInfo){
 			wx.navigateTo({
 				url: '../updateInfo/updateInfo',
 			})
 		}
+	},
+	toAboutUs(){
+		wx.navigateTo({
+			url: '../aboutUs/aboutUs',
+		})
 	},
 	// 新接口的方法
 	getUserProfile(){

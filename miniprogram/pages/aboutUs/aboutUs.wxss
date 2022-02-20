@@ -1,0 +1,29 @@
+.logo{
+	padding: 30rpx 0;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+}
+
+.logo image{
+	width: 90%;
+	height: 300rpx;
+}
+
+.desc{
+	background-color: #fff;
+	padding: 20rpx;
+	margin-top: 20rpx;
+	font-size: 26rpx;
+}
+
+.contact{
+	color: #a1a1a1;
+	margin: 20rpx;
+}
+
+.cell{
+	background-color: #fff;
+	padding: 20rpx;
+	margin-bottom: 5rpx;
+}

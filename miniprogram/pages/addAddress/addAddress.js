@@ -41,18 +41,14 @@ Page({
 	save(e){
 		const { build,houseNumber,name,phone,defaultAddress,isEdit,editNow,index } = this.data;
 		let address = wx.getStorageSync('address');
-		if (!isEdit) {
-			if (defaultAddress) {
-				if(address){
-					for (let i = 0; i < address.length; i++) {
-						if(address[i].defaultAddress){
-							wx.showToast({
-								icon:'none',
-								title: '已存在默认地址!',
-							})
-							return;
-						}
-					}
+		if (!isEdit&&defaultAddress&&address) {
+			for (let i = 0; i < address.length; i++) {
+				if(address[i].defaultAddress){
+					wx.showToast({
+						icon:'none',
+						title: '已存在默认地址!',
+					})
+					return;
 				}
 			}
 		}
