@@ -26,6 +26,11 @@ Page({
 			})
 		}
 	},
+	toApplyOrder(){
+		wx.navigateTo({
+			url: '../applyOrder/applyOrder',
+		})
+	},
 	toAboutUs(){
 		wx.navigateTo({
 			url: '../aboutUs/aboutUs',

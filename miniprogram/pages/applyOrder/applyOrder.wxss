@@ -1,0 +1,106 @@
+.body{
+	background-color: #fff;
+	width: 90%;
+	margin: 70rpx auto;
+	border-radius: 20rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+
+.body .avatar{
+	border-radius: 50%;
+	width: 100rpx;
+	height: 100rpx;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);/*实现居中*/
+	top: -50rpx;
+	background-color: #fff;
+	border: 5rpx solid #1296db;
+}
+
+.body .avatar image{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.body .tips{
+	width: 80%;
+	background-color: rgba(16, 103, 209, 0.1);
+	text-align: center;
+	margin-top: 100rpx;
+	color: #1296db;
+	padding: 20rpx 0;
+	border: 2rpx solid #1296db;
+	border-radius: 10rpx;
+}
+
+.body .item{
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	padding: 20rpx 0;
+	border-bottom: 1rpx solid #d1d1d1;
+	margin-top: 20rpx;
+	align-items: center;
+}
+
+.body .item .left{
+	display: flex;
+	align-items: center;
+}
+
+.body .item .left image{
+	width: 40rpx;
+	height: 40rpx;
+}
+
+.body .item .left text{
+	margin-left: 20rpx;
+}
+
+.body .item .right{
+	color: #a1a1a1;
+}
+
+.body .item input{
+	text-align: right;
+}
+
+.body .upload{
+	width: 90%;
+	padding: 20rpx 0;
+}
+
+.body .upload .load{
+	padding: 150rpx 300rpx;
+	border: 2rpx dashed #a1a1a1;
+	color: #a1a1a1;
+	margin-top: 20rpx;
+	font-size: 40rpx;
+	border-radius: 10rpx;
+	position: relative;
+}
+
+.body .upload .load image{
+	width: 600rpx;
+	height: 300rpx;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius:0 !important;
+}
+
+.body .submitBtn{
+	width: 90%;
+	background-color: #1296db;
+	padding: 20rpx 0;
+	font-weight: 400;
+	border-radius: 40rpx;
+	margin: 0 auto;
+	color: #fff;
+	margin: 60rpx 0 40rpx;
+}

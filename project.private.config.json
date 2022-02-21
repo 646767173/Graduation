@@ -143,6 +143,12 @@
           "pathName": "pages/address/address",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/applyOrder/applyOrder",
+          "pathName": "pages/applyOrder/applyOrder",
+          "query": "",
+          "scene": null
         }
       ]
     }

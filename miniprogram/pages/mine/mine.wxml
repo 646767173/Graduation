@@ -23,14 +23,14 @@
 	</view>
 	<text class="right">〉</text>
 </button>
-<!-- 
-<view class="functions mt">
+
+<button class="functions" bindtap="toApplyOrder">
 	<view class="left">
 		<image src="../../images/GeRenXinXi.png"></image>
-		<text>个人信息</text>
+		<text>申请接单</text>
 	</view>
 	<text class="right">〉</text>
-</view> -->
+</button>
 
 <button class="functions mt">
 	<view class="left">
