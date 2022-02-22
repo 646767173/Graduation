@@ -5,6 +5,7 @@
 	<view class="tips" bindtap="showTips">
 		申请接单常见问题说明
 	</view>
+	<my-modal wx:if="{{showTips}}" title="title" content="{{content}}" bindclose="showTips"></my-modal>
 	<view class="item">
 		<text>姓名：</text>
 		<input type="text" placeholder="你的姓名"/>
@@ -27,5 +28,5 @@
 		</view>
 		<view class="right">〉</view>
 	</view>
-	<button class="submitBtn">提交申请</button>
+	<my-button text="提交申请"></my-button>
 </view>

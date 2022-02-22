@@ -1,0 +1,11 @@
+<view class="modal">
+	<view class="top">
+		<text>{{title}}</text>
+		<text bindtap="close">×</text>
+	</view>
+	<view class="content">{{content}}</view>
+	<view class="btn">
+		<button type="primary" bindtap="close">确定</button>
+		<button bindtap="close">取消</button>
+	</view>
+</view>

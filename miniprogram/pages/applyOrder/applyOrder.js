@@ -6,12 +6,14 @@ Page({
 	 */
 	data: {
 		userInfo:{},
-		applyImg:''
+		applyImg:'',
+		showTips:false,
+		title: '常见问题',
+		content: '1证件号指学生证上面的号码，2相关证件证面指的是学生证正面'
 	},
 	showTips(){
-		wx.showModal({
-			title: '常见问题',
-			content: '1证件号指学生证上面的号码，2相关证件证面指的是学生证正面'
+		this.setData({
+			showTips: !this.data.showTips
 		})
 	},
 	uploadImg(){
