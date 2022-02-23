@@ -1,6 +1,5 @@
-// pages/updateInfo/updateInfo.js
+const utils = require("../../utils/utils.js");
 Page({
-
 	/**
 	 * 页面的初始数据
 	 */
@@ -8,14 +7,16 @@ Page({
 		userInfo:{},
 	},
 
-	updateName(e){
+	updateName: utils.debounce(function(e){//updateName添加防抖
+		this.Name(e);
+	}),
+	Name: function(e){
 		let userInfo = this.data.userInfo;
-		userInfo.nickName = e.detail.value;//可以加个防抖，只截取最后一次即可(未实装)
+		userInfo.nickName = e[0].detail.value;
 		this.setData({
 			userInfo:userInfo//键值对，同名时可简写
 		})
 	},
-
 	updatePhone(e){
 		let userInfo = this.data.userInfo;
 		userInfo.phone = e.detail.value;

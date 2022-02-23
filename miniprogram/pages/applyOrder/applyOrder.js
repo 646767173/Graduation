@@ -1,15 +1,31 @@
-// pages/applyOrder/applyOrder.js
+const utils = require("../../utils/utils.js");
+const db = wx.cloud.database();
 Page({
-
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
 		userInfo:{},
-		applyImg:'',
+		applyMes:{},
 		showTips:false,
 		title: '常见问题',
-		content: '1证件号指学生证上面的号码，2相关证件证面指的是学生证正面'
+		content: '1证件号指学生证上面的号码，2相关证件证面指的是学生证正面',
+	},
+	getName: utils.debounce(function(e){//给getName加防抖
+		this.Name(e);
+	}),
+	Name: function(e){
+		this.setData({
+			['applyMes.name']: e[0].detail.value
+		})
+	},
+	getUserID: utils.debounce(function(e){//给getUserID加防抖
+		this.UserID(e);
+	}),
+	UserID: function(e){
+		this.setData({
+			['applyMes.userID']: e[0].detail.value
+		})
 	},
 	showTips(){
 		this.setData({
@@ -32,7 +48,7 @@ Page({
 					success:(res)=>{
 						let fileID = res.fileID;
 						this.setData({
-							applyImg:fileID,
+							['applyMes.applyImg']:fileID,
 						})
 						wx.hideLoading()
 					}
@@ -45,13 +61,44 @@ Page({
 			url: '../agreement/agreement',
 		})
 	},
+	submit(){
+		// wx.setStorageSync('applyMes', this.data.applyMes);//存储在Storage
+		const that = this.data;
+		db.collection('applyOrder').add({// 提交到数据库
+			data:{
+				applyMes:that.applyMes,
+				userInfo:that.userInfo,
+				state:'待审核'
+			},
+			success:(res)=>{
+				// 清空输入内容
+				this.setData({
+					applyMes:''
+				});
+				wx.showToast({
+					title: '提交成功',
+				});
+				wx.navigateTo({
+					url: '../applyOrderLoading/applyOrderLoading'
+					});
+			},
+			fail:(res)=>{
+				wx.showToast({
+					icon:'error',
+					title: '提交失败，请检查后重试',
+				})
+			}
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
 		const userInfo = wx.getStorageSync('userInfo');
+		const applyMes = wx.getStorageSync('applyMes');
 		this.setData({
 			userInfo,
+			applyMes,
 		})
 	},
 

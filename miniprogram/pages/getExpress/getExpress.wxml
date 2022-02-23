@@ -73,7 +73,7 @@
 			<text>需支付</text>
 			<text>3元</text>
 		</view>
-		<button type="submit" class="submit">立即发布</button>
+		<my-button text="立即发布"></my-button>
 		<view class="statement">
 			<text>免责声明</text>
 			<text>用户条款&隐私策略</text>

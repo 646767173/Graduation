@@ -13,8 +13,11 @@
     "pages/handle/handle",
     "pages/updateInfo/updateInfo",
     "pages/aboutUs/aboutUs",
+    "pages/help/help",
     "pages/applyOrder/applyOrder",
+    "pages/applyOrderLoading/applyOrderLoading",
     "pages/agreement/agreement",
+
     "components/myButton/myButton",
     "components/myModal/myModal"
   ],

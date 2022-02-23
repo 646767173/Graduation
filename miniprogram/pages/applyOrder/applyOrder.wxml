@@ -5,20 +5,20 @@
 	<view class="tips" bindtap="showTips">
 		申请接单常见问题说明
 	</view>
-	<my-modal wx:if="{{showTips}}" title="title" content="{{content}}" bindclose="showTips"></my-modal>
+	<my-modal wx:if="{{showTips}}" title="{{title}}" content="{{content}}" bindclose="showTips"></my-modal>
 	<view class="item">
 		<text>姓名：</text>
-		<input type="text" placeholder="你的姓名"/>
+		<input type="text" placeholder="你的姓名" value="{{applyMes.name}}" bindinput="getName"/>
 	</view>
 	<view class="item">
 		<text>证件号：</text>
-		<input type="text" placeholder="你的证件号"/>
+		<input type="text" placeholder="你的证件号"  value="{{applyMes.userID}}" bindinput="getUserID"/>
 	</view>
 	<view class="upload">
 		<text>相关证件证明：</text>
 		<view class="load" bindtap="uploadImg">
-			<text wx:if="{{!applyImg}}">+</text>
-			<image wx:else src="{{applyImg}}"></image>
+			<text wx:if="{{!applyMes.applyImg}}">+</text>
+			<image wx:else src="{{applyMes.applyImg}}"></image>
 		</view>
 	</view>
 	<view class="item" bindtap="toAgreement">
@@ -28,5 +28,5 @@
 		</view>
 		<view class="right">〉</view>
 	</view>
-	<my-button text="提交申请"></my-button>
+	<my-button text="提交申请" bindtap="submit"></my-button>
 </view>

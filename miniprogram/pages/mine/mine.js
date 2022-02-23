@@ -36,6 +36,11 @@ Page({
 			url: '../aboutUs/aboutUs',
 		})
 	},
+	toHelp(){
+		wx.navigateTo({
+			url: '../help/help',
+		})
+	},
 	// 新接口的方法
 	getUserProfile(){
 		wx.getUserProfile({

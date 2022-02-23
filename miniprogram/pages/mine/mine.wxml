@@ -48,7 +48,7 @@
 	<text class="right">〉</text>
 </button>
 
-<button class="functions">
+<button class="functions" bindtap="toHelp">
 	<view class="left">
 		<image src="../../images/BangZhuFanKui.png"></image>
 		<text>帮助反馈</text>

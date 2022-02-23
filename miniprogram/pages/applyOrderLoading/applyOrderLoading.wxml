@@ -1,0 +1,6 @@
+<view class="body">
+	<image src="../../images/checking.png"></image>
+	<text>审核中，请耐心等待</text>
+	<text>如有疑问请点击下方联系管理员</text>
+	<my-button text="联系管理员" bindtap="needHelp"></my-button>
+</view>
