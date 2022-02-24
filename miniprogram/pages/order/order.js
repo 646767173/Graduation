@@ -1,6 +1,5 @@
-// pages/order/order.js
+const db = wx.cloud.database();
 Page({
-
 	/**
 	 * 页面的初始数据
 	 */
@@ -19,7 +18,25 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		db.collection('order').get({
+			success:(res)=>{
+				const {data} = res;
+				data.forEach(item => {
+					const {business,expectGender,expectTime,number,remark,size} = item.info;
+					const info = `快递类型：${size} -- 快递数量：${number}个 -- 快递商家：${business} -- 期望性别：${expectGender} -- 期望时间：${expectTime} -- 备注信息：${remark}`;
+					item.info = info;
+				});
+				this.setData({
+					orderList: data,
+				})
+			},
+			fail:(res) => {
+				wx.showToast({
+					icon:'none',
+					title: '查询失败',
+				})
+			}
+		})
 	},
 
 	/**

@@ -8,14 +8,17 @@ Page({
 			{
 				name:'小尺寸',
 				mes:'小尺寸：手机巴掌大小--(20cm*50cm)，费用2元',
+				money:2
 			},
 			{
 				name:'中尺寸',
 				mes:'中尺寸：鞋服盒子大小--(30cm*60cm)，费用4元',
+				money:4
 			},
 			{
 				name:'大尺寸',
 				mes:'大尺寸：重量≥5kg，费用7元',
+				money:7
 			},
 			],
 		typeNow:0,
@@ -30,6 +33,14 @@ Page({
 		genderArray:['不限性别','仅限男生','仅限女生'],
 		amountIndex:0,
 		amountArray:['1个','2个','3个(+1元)','3~5个(+2元)','5~7个(+3元)'],
+		money:2,
+		address:'',
+		business:'',
+		expressCode:'',
+		codeImg:'',
+		remark:'',
+		addMoney:0,
+		userInfo:{}
 	},
 	bindAmount(e){
 		this.setData({
@@ -55,7 +66,8 @@ Page({
 	selectType(e){
 		const {id,mes} = e.currentTarget.dataset;
 		this.setData({
-			typeNow: id
+			typeNow: id,
+			money: this.data.typeList[id].money,
 		})
 		wx.showToast({
 			icon: 'none',

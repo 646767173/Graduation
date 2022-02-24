@@ -155,6 +155,12 @@
           "pathName": "pages/applyOrderLoading/applyOrderLoading",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/getExpress/getExpress",
+          "pathName": "pages/getExpress/getExpress",
+          "query": "",
+          "scene": null
         }
       ]
     }
