@@ -1,4 +1,5 @@
-// pages/getExpress/getExpress.js
+const db = wx.cloud.database();
+import { getTimeNow } from '../../utils/time';
 Page({
 	/**
 	 * 页面的初始数据
@@ -26,16 +27,14 @@ Page({
 		isReward:false,
 		businessIndex:0,
 		businessArray:['顺丰速递','京东快递','圆通速递','韵达快递','中通快递','申通快递','其他快递'],
-		selectBusiness:false,
 		timeIndex:0,
 		timeArray:['不限时间','尽快送达','今天中午1点前','今天晚上8点前'],
 		genderIndex:0,
 		genderArray:['不限性别','仅限男生','仅限女生'],
 		amountIndex:0,
-		amountArray:['1个','2个','3个(+1元)','3~5个(+2元)','5~7个(+3元)'],
+		amountArray:['1个','2个','3个','4个','5个'],
 		money:2,
 		address:'',
-		business:'',
 		expressCode:'',
 		codeImg:'',
 		remark:'',
@@ -55,7 +54,6 @@ Page({
 	bindBusiness(e){
 		this.setData({
 			businessIndex:e.detail.value,
-			selectBusiness:true,
 		})
 	},
 	bindTime(e){
@@ -90,11 +88,105 @@ Page({
 			url: '../address/address',
 		})
 	},
+	getExpressCode(e){
+		this.setData({
+			expressCode: e.detail.value
+		})
+	},
+	getAddMoney(e){
+			this.setData({
+				addMoney:Number(e.detail.value)
+			})
+	},
+	getRemark(e){
+		this.setData({
+			remark: e.detail.value
+		})
+	},
+	getCode(){
+		wx.chooseImage({
+			count: 1,
+			sizeType:['compressed','original'],
+			sourceType: ['album', 'camera'],
+			success: (res) => {
+				wx.showLoading({
+					title: '加载中',
+				})
+				const random = Math.floor(Math.random()*1000);
+				wx.cloud.uploadFile({
+					cloudPath:`expressCode/${random}.png`,
+					filePath: res.tempFilePaths[0],
+					success:(res) =>{
+						let fileID = res.fileID;
+						this.setData({
+							codeImg:fileID
+						})
+						wx.hideLoading();
+					}
+				})
+			}
+		})
+	},
+	submit(){
+		const that = this.data;
+		// 判断必填值是否填入
+		if(!that.address || !(that.expressCode || that.codeImg) ){
+			wx.showToast({
+				icon:'none',
+				title: '您填入的信息不全，请填写必填项',
+			})
+			return;
+		}
+		db.collection('order').add({
+			data:{
+				name: '帮我取',//模块名
+				time: getTimeNow(),//当前时间
+				money: that.money + that.addMoney,//订单金额
+				state: '待帮助',//订单状态
+				address: that.address,//收件地址
+				info: {//订单信息
+					size: that.typeList[that.typeNow].name,// 快递大小
+					business: that.businessArray[that.businessIndex],// 快递商家
+					expressCode: that.expressCode,// 取件码
+					codeImg: that.codeImg,// 取件码截图
+					remark: that.remark,// 备注信息
+					expectTime: that.timeArray[that.timeIndex],// 期望时间
+					expectGender: that.genderArray[that.genderIndex],// 性别限制
+					amount: that.amountArray[that.amountIndex]// 快递数量
+				},
+				userInfo: that.userInfo//用户信息
+			},
+			success:(res)=>{
+				wx.showToast({
+					title: '发布成功',
+				})
+				wx.switchTab({
+					url: '../index/index',
+				})
+			},
+			fail:(res)=>{
+				wx.showToast({
+					inco:'none',
+					title: '发布失败',
+				})
+			}
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		const address = wx.getStorageSync('addressNow');
+		const userInfo = wx.getStorageSync('userInfo');
+		if(address){
+			const {build,houseNumber} = address;
+			this.setData({
+				address:`${build}-${houseNumber}`
+			})
+		}
+		this.setData({
+			userInfo,
+		})
 	},
 
 	/**

@@ -1,11 +1,18 @@
-// pages/address/address.js
-Page({
 
+Page({
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
 		address:[],
+	},
+	selectAddress(e){
+		const {index} = e.currentTarget.dataset;
+		const address = this.data.address[index];
+		wx.setStorageSync('addressNow', address);
+		wx.redirectTo({
+			url: `../getExpress/getExpress`,
+		})
 	},
 	addAddress(e){
 		wx.navigateTo({

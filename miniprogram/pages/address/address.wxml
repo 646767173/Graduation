@@ -4,7 +4,7 @@
 		---暂无数据---
 	</view>
 
-	<view class="address" wx:for="{{address}}" wx:key="index">
+	<view class="address" wx:for="{{address}}" wx:key="index" data-index="{{index}}" bindtap="selectAddress">
 		<text>我的地址：{{item.build}}-{{item.houseNumber}}</text>
 		<text>联系方式：{{item.name}}-{{item.phone}}</text>
 		<view class="address_bottom">

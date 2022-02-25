@@ -63,14 +63,24 @@
 	border: 4rpx solid #d1d1d1;
 	width: 90%;
 	justify-content: center;
+	padding: 20rpx;
 }
 
-.container .detail .content image{
+.container .detail .getImg{
 	position: absolute;
 	width: 60rpx;
 	height: 60rpx;
 	bottom: 20rpx;
 	right: 30rpx;
+	z-index: 10;
+}
+
+.container .detail .expressCode{
+	width: 270rpx;
+	height: 180rpx;
+	position: absolute;
+	left: 220rpx;
+	bottom: 20rpx;
 }
 
 .container .bottom_tip{

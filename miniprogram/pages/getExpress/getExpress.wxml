@@ -5,26 +5,26 @@
 		</view>
 		<view class="address line">
 			<text>收件地址：</text>
-			<text bindtap="selectAddress">请选择地址 〉</text>
+			<text bindtap="selectAddress">{{address ? address : '请选择地址 〉'}}</text>
 		</view>
 		<view class="address line">
 			<text>快递商家：</text>
 			<!-- <text bindtap="selectTarget">请选择快递点 〉</text> -->
 			<picker bindchange="bindBusiness" value="{{businessIndex}}" range="{{businessArray}}">
-				<text style="color:#a1a1a1">{{selectBusiness ? businessArray[businessIndex] : '请选择快递点'}} 〉</text>
+				<text style="color:#a1a1a1">{{businessArray[businessIndex]}} 〉</text>
 			</picker>
 		</view>
 		<view class="address">
 			<text>取件详情信息：</text>
 		</view>
 		<view class="detail">
-			<textarea class="content" cols="20" rows="6" placeholder="请输入取件码或上传截图">
-				<image src="../../images/image.png"></image>
-			</textarea>
+			<textarea class="content" cols="30" rows="10" placeholder="请输入取件码或上传截图" value="{{expressCode}}" bindinput="getExpressCode"></textarea>
+			<image class="expressCode" src="{{codeImg}}"></image>
+			<image class="getImg" src="{{ codeImg ? '../../images/image_fill.png' : '../../images/image.png'}}" bindtap="getCode"></image>
 		</view>
 		<view class="address line">
 			<text>备注信息：</text>
-			<input type="text" placeholder="此消息所有人可见"></input>
+			<input type="text" placeholder="此消息所有人可见" value="{{remark}}"></input>
 		</view>
 		<view class="address line">
 			<text>更多要求：</text>
@@ -65,15 +65,15 @@
 			</view>
 			<view class="address line dialogWidth" wx:if="{{isReward}}">
 				<text>额外赏金：</text>
-				<input type="text" placeholder="输入赏金"/>
+				<input type="text" value="{{ addMoney }}" bindinput="getAddMoney" placeholder="输入赏金" />
 			</view>
 		</view>
 		<view class="bottom_tip">
 			<text>信息仅接单的同学可见!</text>
 			<text>需支付</text>
-			<text>3元</text>
+			<text>{{money + addMoney}}元</text>
 		</view>
-		<my-button text="立即发布"></my-button>
+		<my-button text="立即发布" bindtap="submit"></my-button>
 		<view class="statement">
 			<text>免责声明</text>
 			<text>用户条款&隐私策略</text>

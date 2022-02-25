@@ -26,7 +26,6 @@ function debounce(fn, interval) {
 	};
 }
 
-
 module.exports = {
 	throttle: throttle,
 	debounce: debounce

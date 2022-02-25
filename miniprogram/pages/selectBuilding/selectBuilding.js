@@ -13,7 +13,7 @@ Page({
 		const that = this.data;
 		const index = e.currentTarget.dataset.index;
 		const build = `${that.tabList[that.tabNow]}-${index+2}层`;
-		wx.navigateTo({
+		wx.redirectTo({
 			url: `../addAddress/addAddress?build=${build}`,
 		})
 	},
@@ -55,7 +55,7 @@ Page({
 	 * 生命周期函数--监听页面卸载
 	 */
 	onUnload: function () {
-
+		
 	},
 
 	/**
