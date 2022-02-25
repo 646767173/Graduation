@@ -73,6 +73,13 @@
 	font-size: 28rpx;
 }
 
+.order .order_top .top_right_finish{
+	color: rgb(255, 153, 0);
+	background-color: rgb(255, 247, 235);
+	padding: 15rpx;
+	font-size: 28rpx;
+}
+
 .order .order_content{
 	padding-left: 70rpx;
 	padding-top: 20rpx;

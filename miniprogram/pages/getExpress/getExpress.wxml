@@ -24,7 +24,7 @@
 		</view>
 		<view class="address line">
 			<text>备注信息：</text>
-			<input type="text" placeholder="此消息所有人可见" value="{{remark}}"></input>
+			<input type="text" placeholder="此消息所有人可见" value="{{remark}}" bindinput="getRemark"></input>
 		</view>
 		<view class="address line">
 			<text>更多要求：</text>
@@ -33,7 +33,7 @@
 		</view>
 		<view class="show" wx:if="{{showMore}}">
 			<view class="address line dialogWidth">
-				<text>期望送达：</text>
+				<text>期望时间：</text>
 				<!-- <text>不限时间 〉</text> -->
 				<picker bindchange="bindTime" value="{{timeIndex}}" range="{{timeArray}}">
 					<text style="color:#a1a1a1">

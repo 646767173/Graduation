@@ -161,6 +161,12 @@
           "pathName": "pages/getExpress/getExpress",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/order/order",
+          "pathName": "pages/order/order",
+          "query": "",
+          "scene": null
         }
       ]
     }

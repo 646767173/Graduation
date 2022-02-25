@@ -6,7 +6,7 @@ Page({
 	data: {
 		tabList:['全部','我的订单','我帮助的','正在悬赏'],
 		tabNow:0,//当前选中的数组下标，默认是全部
-
+		orderList:[]
 	},
 	selectTab(e){
 		this.setData({
@@ -18,12 +18,12 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		db.collection('order').get({
+		db.collection('order').get({//实现全部订单的查询
 			success:(res)=>{
 				const {data} = res;
 				data.forEach(item => {
-					const {business,expectGender,expectTime,number,remark,size} = item.info;
-					const info = `快递类型：${size} -- 快递数量：${number}个 -- 快递商家：${business} -- 期望性别：${expectGender} -- 期望时间：${expectTime} -- 备注信息：${remark}`;
+					const {business,expectGender,expectTime,amount,remark,size} = item.info;
+					const info = `快递大小：${size} / 快递数量：${amount} / 快递商家：${business} / 性别限制：${expectGender} / 期望时间：${expectTime} / 备注信息：${remark}`;
 					item.info = info;
 				});
 				this.setData({
@@ -37,6 +37,29 @@ Page({
 				})
 			}
 		})
+		/* //实现获取openid
+		wx.cloud.callFunction({
+			name:'getMyOpenID',
+			success:(res)=>{
+				db.collection('order').where({
+					_openid: res.result.openid
+				}).get({
+					success:(res)=>{
+						//查到的res就是我的订单，需要将数据处理一下
+						const {data} = res;
+						data.forEach(item => {
+							const {business,expectGender,expectTime,amount,remark,size} = item.info;
+							const info = `快递大小：${size} / 快递数量：${amount} / 快递商家：${business} / 性别限制：${expectGender} / 期望时间：${expectTime} / 备注信息：${remark}`;
+							item.info = info;
+						});
+						this.setData({
+							orderList: data,
+						})
+					}
+				})
+			}
+		})
+		*/
 	},
 
 	/**

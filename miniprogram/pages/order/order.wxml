@@ -11,37 +11,33 @@
 	<view class="tips">
 		向上滑动以刷新~
 	</view>
-	<view class="order" wx:for="{{4}}" wx:key="index">
+	<view class="order" wx:for="{{orderList}}" wx:key="index">
 		<view class="order_top">
 			<view class="top_left">
-				<image src="../../images/mine(1).png"></image>
+				<image src="{{item.userInfo.avatarUrl}}"></image>
 				<view class="name">
-					<text>租借服务</text>
-					<text>2天前</text>
+					<text>{{item.name}}</text>
+					<text>{{item.time}}</text>
 				</view>
 			</view>
-
-			<view class="top_right">
-				待帮助
+			<view class="{{item.state === '待帮助' ? 'top_right' : 'top_right_finish'}}">
+				{{item.state}}
 			</view>
-
 		</view>
 
 		<view class="order_content">
 			<view class="content">
-				这里是内容区，内容区内容区内容区这里是内容区，内容区内容区内容区这里是内容区，内容区内容区内容区
-				时间：00:01 租借时长：30分钟归还
+				{{item.info}}
 			</view>
 			<view class="address">
-				目的地：其他区域-其他区域-其他区域
+				目的地：{{item.address}}
 			</view>
 		</view>
-
 		<view class="order_bottom">
 			<view class="money">
-				金额¥100
+				金额 ¥{{item.money}}
 			</view>
-			<view class="accept">
+			<view class="accept" wx:if="{{item.state==='待帮助'}}">
 				接单
 			</view>
 		</view>
