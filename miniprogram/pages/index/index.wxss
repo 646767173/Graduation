@@ -45,3 +45,16 @@
 	font-size: 42rpx;
 	color: #1296db;
 }
+
+.container .differentHelp{
+	margin: 40rpx auto;
+}
+.container .differentHelp:hover{
+	box-shadow: 0 0 5px 1px #1296db;
+	background-color: #aaafff;
+}
+
+.container .differentHelp .help{
+	font-size: 40rpx;
+	color: #1296db;
+}

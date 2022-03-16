@@ -15,4 +15,7 @@
     </view>
     <text class="text">{{item.text}}</text>
   </view>
+  <view class="differentHelp" data-url="{{differentHelp.url}}" bindtap="toDetail">
+    <text class="help">{{differentHelp.text}}</text>
+  </view>
 </view>

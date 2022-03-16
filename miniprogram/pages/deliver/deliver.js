@@ -59,7 +59,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		
 	},
 
 	/**
@@ -73,7 +73,17 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+		const address = wx.getStorageSync('addressNow');
+		const userInfo = wx.getStorageSync('userInfo');
+		if(address){
+			const {build,houseNumber} = address;
+			this.setData({
+				address:`${build}-${houseNumber}`
+			})
+		}
+		this.setData({
+			userInfo,
+		})
 	},
 
 	/**

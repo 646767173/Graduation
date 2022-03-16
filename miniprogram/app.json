@@ -10,6 +10,7 @@
     "pages/selectBuilding/selectBuilding",
     "pages/buy/buy",
     "pages/deliver/deliver",
+    "pages/print/print",
     "pages/handle/handle",
     "pages/updateInfo/updateInfo",
     "pages/aboutUs/aboutUs",

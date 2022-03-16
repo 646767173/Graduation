@@ -10,8 +10,8 @@ Page({
 		const {index} = e.currentTarget.dataset;
 		const address = this.data.address[index];
 		wx.setStorageSync('addressNow', address);
-		wx.redirectTo({
-			url: `../getExpress/getExpress`,
+		wx.navigateBack({
+			delta: 1,
 		})
 	},
 	addAddress(e){

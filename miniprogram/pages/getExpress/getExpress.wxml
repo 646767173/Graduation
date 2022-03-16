@@ -34,7 +34,6 @@
 		<view class="show" wx:if="{{showMore}}">
 			<view class="address line dialogWidth">
 				<text>期望时间：</text>
-				<!-- <text>不限时间 〉</text> -->
 				<picker bindchange="bindTime" value="{{timeIndex}}" range="{{timeArray}}">
 					<text style="color:#a1a1a1">
 						{{timeArray[timeIndex]}} 〉
@@ -43,7 +42,6 @@
 			</view>
 			<view class="address line dialogWidth">
 				<text>性别限制：</text>
-				<!-- <text>不限性别 〉</text> -->
 				<picker bindchange="bindGender" value="{{genderIndex}}" range="{{genderArray}}">
 					<text style="color:#a1a1a1">
 						{{genderArray[genderIndex]}} 〉
@@ -52,7 +50,6 @@
 			</view>
 			<view class="address line dialogWidth">
 				<text>快递数量：</text>
-				<!-- <text>1个 〉</text> -->
 				<picker bindchange="bindAmount" value="{{amountIndex}}" range="{{amountArray}}">
 					<text style="color:#a1a1a1">
 						{{amountArray[amountIndex]}} 〉

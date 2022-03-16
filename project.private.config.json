@@ -167,6 +167,18 @@
           "pathName": "pages/order/order",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/print/print",
+          "pathName": "pages/print/print",
+          "query": "",
+          "scene": null
         }
       ]
     }

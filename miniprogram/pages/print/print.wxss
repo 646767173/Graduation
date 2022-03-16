@@ -7,9 +7,26 @@
 	padding: 40rpx 25rpx 25rpx 25rpx;
 }
 
+.container .title{
+	text-align: center;
+}
+
 .line{
 	padding-bottom: 22rpx;
 	border-bottom: 2rpx solid #d1d1d1;
+}
+
+.container .type{
+	display: flex;
+	margin: 0 auto;
+	width: 90%;
+	margin-top: 20rpx;
+	justify-content: center;
+}
+
+.container .type view{
+	border: 2rpx solid #d1d1d1;
+	padding: 20rpx 45rpx;
 }
 
 .container .item{
@@ -26,17 +43,13 @@
 	-webkit-text-fill-color: #a1a1a1;
 }
 
-.container .detail{
-	margin-top: 15rpx;
-	display: flex;
-	justify-content: center;
-	position: relative;
+.container .item .uploaded image{
+	width: 80rpx;
+	height: 80rpx;
 }
 
-.container .detail .content{
-	border: 4rpx solid #d1d1d1;
-	width: 90%;
-	justify-content: center;
+.container .item text:nth-child(2){
+	color: #a1a1a1;
 }
 
 .container .bottom_tip{
@@ -45,8 +58,10 @@
 	text-align: center;
 	margin-top: 30rpx;
 }
-.container .bottom_tip text:nth-child(1){ color: #a1a1a1; }
-.container .bottom_tip text:nth-child(3){ color: red;}
+.container .bottom_tip text{ font-size: 28rpx; color: #919191; }
+.container .bottom_tip text:last-child{ margin-top: 10rpx; font-size: 28rpx; }
+.color_red{ color: red !important; }
+.total{font-size: 46rpx !important; font-weight: bold !important;}
 
 .container .submit{
 	width: 90%;
@@ -65,4 +80,8 @@
 }
 .container .statement text{
 	margin-left: 30rpx;
+}
+
+.container .item .uploaded text{
+	color: #1296db;
 }

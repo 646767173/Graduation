@@ -14,6 +14,11 @@ Page({
         url:'../getExpress/getExpress'
       },
       {
+        icon:'../../images/Banli.png',
+        text:'帮我印',
+        url:'../print/print'
+      },
+      {
         icon:'../../images/Gouwu.png',
         text:'帮我买',
         url:'../buy/buy'
@@ -23,12 +28,11 @@ Page({
         text:'帮我送',
         url:'../deliver/deliver'
       },
-      {
-        icon:'../../images/Banli.png',
-        text:'帮我办',
-        url:'../handle/handle'
-      }
-    ]
+    ],
+    differentHelp:{
+      text:'其他易送',
+      url:'../handle/handle'
+    }
   },
   toDetail(e){
     var url = e.currentTarget.dataset.url;
