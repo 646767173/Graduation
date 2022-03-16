@@ -1,4 +1,5 @@
-// pages/buy/buy.js
+const db = wx.cloud.database();
+import { getTimeNow } from '../../utils/time';
 Page({
 	/**
 	 * 页面的初始数据

@@ -1,3 +1,5 @@
+const db = wx.cloud.database();
+import { getTimeNow } from '../../utils/time';
 Page({
 	/**
 	 * 页面的初始数据
@@ -14,6 +16,7 @@ Page({
 		colorPrint:false,
 		twoSided:false,
 		money:2,
+		filePath:'',
 	},
 	bindTime(e){
 		this.setData({
@@ -38,8 +41,10 @@ Page({
 					cloudPath:`printFile/${random}.doc`,
 					filePath: res.tempFiles[0].path,
 					success:(res)=>{
+						let filePath = res.fileID;
 						this.setData({
-							uploaded:true
+							uploaded:true,
+							filePath,
 						});
 						wx.showToast({
 							title: '上传成功',
@@ -103,7 +108,47 @@ Page({
 		})
 	},
 	submit(){
-		
+		const that = this.data;
+		if( !that.pageNum || !that.copyNum || !that.uploaded || !that.address){// 必选项
+			wx.showToast({
+				icon:'none',
+				title: '填入的信息不全，请补全关键项',
+			})
+			return;
+		};
+		db.collection('order').add({
+			data:{
+				name:'帮我印',//模块名
+				time: getTimeNow(),//当前时间
+				money: that.money,//订单金额
+				state: '待帮助',//订单状态
+				address: that.address,//收件地址
+				info: {//订单信息
+					filePath: that.filePath,// 原件路径
+					pageNum: that.pageNum,// 打印页数
+					copyNum: that.copyNum,// 打印份数
+					colorPrint: that.colorPrint,// 是否彩印
+					double: that.twoSided,// 是否双面
+					remark: that.remark,// 备注信息
+					expectTime: that.timeArray[that.timeIndex],// 期望时间
+				},
+				userInfo:that.userInfo//用户信息
+			},
+			success:(res)=>{
+				wx.switchTab({
+					url: '../index/index',
+				});
+				wx.showToast({
+					title: '发布成功',
+				});
+			},
+			fail:(res)=>{
+				wx.showToast({
+					inco:'none',
+					title: '发布失败',
+				})
+			}
+		})
 	},
 	/**
 	 * 生命周期函数--监听页面加载

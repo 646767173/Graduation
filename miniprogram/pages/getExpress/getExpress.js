@@ -157,12 +157,12 @@ Page({
 				userInfo: that.userInfo//用户信息
 			},
 			success:(res)=>{
-				wx.showToast({
-					title: '发布成功',
-				})
 				wx.switchTab({
 					url: '../index/index',
-				})
+				});
+				wx.showToast({
+					title: '发布成功',
+				});
 			},
 			fail:(res)=>{
 				wx.showToast({
