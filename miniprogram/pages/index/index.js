@@ -11,7 +11,7 @@ Page({
       {
         icon:'../../images/Qujian.png',
         text:'帮我取',
-        url:'../getExpress/getExpress'
+        url:'../get/get'
       },
       {
         icon:'../../images/Banli.png',
@@ -30,7 +30,7 @@ Page({
       },
     ],
     differentHelp:{
-      text:'其他易送',
+      text:'其它易送',
       url:'../handle/handle'
     }
   },

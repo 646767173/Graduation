@@ -13,7 +13,7 @@ Page({
 			},
 			{
 				name:'中尺寸',
-				mes:'中尺寸：鞋服盒子大小--(30cm*60cm)，费用4元',
+				mes:'中尺寸：鞋服盒子大小--(40cm*80cm)，费用4元',
 				money:4
 			},
 			{
@@ -25,35 +25,22 @@ Page({
 		typeNow:0,
 		showMore:false,
 		isReward:false,
-		businessIndex:0,
-		businessArray:['顺丰速递','京东快递','圆通速递','韵达快递','中通快递','申通快递','其他快递(写在备注)'],
 		timeIndex:0,
 		timeArray:['尽快送达','今天中午1点前','今天晚上8点前'],
 		genderIndex:0,
 		genderArray:['不限性别','仅限男生','仅限女生'],
-		amountIndex:0,
-		amountArray:['1个','2个','3个','4个','5个'],
 		money:2,
-		address:'',
-		expressCode:'',
-		codeImg:'',
-		remark:'',
 		addMoney:0,
+		address:'',
+		destination:'',
+		detail:'',
+		detailImg:'',
+		remark:'',
 		userInfo:{}
-	},
-	bindAmount(e){
-		this.setData({
-			amountIndex:e.detail.value,
-		})
 	},
 	bindGender(e){
 		this.setData({
 			genderIndex:e.detail.value,
-		})
-	},
-	bindBusiness(e){
-		this.setData({
-			businessIndex:e.detail.value,
 		})
 	},
 	bindTime(e){
@@ -85,12 +72,41 @@ Page({
 	},
 	selectAddress(e){
 		wx.navigateTo({
-			url: '../address/address',
+			url: '../address/address?url=get',
 		})
 	},
-	getExpressCode(e){
+	getDestination(e){
 		this.setData({
-			expressCode: e.detail.value
+			destination: e.detail.value
+		})
+	},
+	getDetail(e){
+		this.setData({
+			detail: e.detail.value
+		})
+	},
+	getDetailImg(){
+		wx.chooseImage({
+			count: 1,
+			sizeType:['compressed','original'],
+			sourceType: ['album', 'camera'],
+			success: (res) => {
+				wx.showLoading({
+					title: '加载中',
+				})
+				const random = Math.floor(Math.random()*1000);
+				wx.cloud.uploadFile({
+					cloudPath:`getImg/${random}.png`,
+					filePath: res.tempFilePaths[0],
+					success:(res) =>{
+						let fileID = res.fileID;
+						this.setData({
+							detailImg:fileID
+						})
+						wx.hideLoading();
+					}
+				})
+			}
 		})
 	},
 	getAddMoney(e){
@@ -103,37 +119,13 @@ Page({
 			remark: e.detail.value
 		})
 	},
-	getCode(){
-		wx.chooseImage({
-			count: 1,
-			sizeType:['compressed','original'],
-			sourceType: ['album', 'camera'],
-			success: (res) => {
-				wx.showLoading({
-					title: '加载中',
-				})
-				const random = Math.floor(Math.random()*1000);
-				wx.cloud.uploadFile({
-					cloudPath:`expressCode/${random}.png`,
-					filePath: res.tempFilePaths[0],
-					success:(res) =>{
-						let fileID = res.fileID;
-						this.setData({
-							codeImg:fileID
-						})
-						wx.hideLoading();
-					}
-				})
-			}
-		})
-	},
 	submit(){
 		const that = this.data;
 		// 判断必填值是否填入
-		if(!that.address || !(that.expressCode || that.codeImg) ){
+		if(!that.address || !that.destination || !(that.detail || that.detailImg) ){
 			wx.showToast({
 				icon:'none',
-				title: '您填入的信息不全，请填写必填项',
+				title: '您填入的信息不全，请补全带*号的必填项',
 			})
 			return;
 		}
@@ -145,14 +137,14 @@ Page({
 				state: '待帮助',//订单状态
 				address: that.address,//收件地址
 				info: {//订单信息
-					size: that.typeList[that.typeNow].name,// 快递大小
-					business: that.businessArray[that.businessIndex],// 快递商家
-					expressCode: that.expressCode,// 取件码
-					codeImg: that.codeImg,// 取件码截图
+					size: that.typeList[that.typeNow].name,// 取件大小
+					detail: that.detail,// 取件详情
+					detailImg: that.detailImg,// 取件详情图
+					destination: that.destination,//取件地址
 					remark: that.remark,// 备注信息
 					expectTime: that.timeArray[that.timeIndex],// 期望时间
 					expectGender: that.genderArray[that.genderIndex],// 性别限制
-					amount: that.amountArray[that.amountIndex]// 快递数量
+					addMoney: that.addMoney,// 额外打赏
 				},
 				userInfo: that.userInfo//用户信息
 			},
@@ -202,7 +194,6 @@ Page({
 			userInfo,
 		})
 	},
-
 	/**
 	 * 生命周期函数--监听页面隐藏
 	 */

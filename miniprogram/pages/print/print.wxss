@@ -63,15 +63,6 @@
 .color_red{ color: red !important; }
 .total{font-size: 46rpx !important; font-weight: bold !important;}
 
-.container .submit{
-	width: 90%;
-	color: #fff;
-	background-color: #1296db;
-	margin-top: 30rpx;
-	padding-bottom: 20rpx 0;
-	border-radius: 50rpx;
-}
-
 .container .statement{
 	color: #1296db;
 	text-align: center;

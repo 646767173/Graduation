@@ -1,50 +1,58 @@
 <view class="container">
-	<view class="title">*送件大小</view>
+	<view class="title">*取件大小</view>
 	<view class="type line">
 		<view class="{{typeNow === index ? 'selectType' : ''}}" wx:for="{{typeList}}" wx:key="index" data-id="{{index}}"
 			data-mes="{{item.mes}}" bindtap="selectType">{{item.name}}</view>
 	</view>
-	<view class="item line">
-		<text>*取件地址：</text>
+	<view class="address line">
+		<text>*收件地址：</text>
 		<text bindtap="selectAddress">{{address ? address : '请选择地址 〉'}}</text>
 	</view>
-	<view class="item line">
-		<text>*送件地址：</text>
-		<input type="text" placeholder="请输入送件目的地" value="{{destination}}" bindinput="getDestination"></input>
+	<view class="address line">
+		<text>*取件地址：</text>
+		<input type="text" placeholder="请输入取件地址" value="{{destination}}" bindinput="getDestination"></input>
 	</view>
-	<view class="item">
-		<text>*送件详情信息：</text>
+	<view class="address">
+		<text>*取件详情信息：</text>
 	</view>
 	<view class="detail">
-		<textarea class="content" cols="30" rows="10" placeholder="请输入送出物品详情或上传物品图" value="{{detail}}"
+		<textarea class="content" cols="30" rows="10" placeholder="请输入取件码或上传截图" value="{{detail}}"
 			bindinput="getDetail"></textarea>
 		<image class="detailImg" src="{{detailImg}}"></image>
 		<image class="getImg" src="{{ detailImg ? '../../images/image_fill.png' : '../../images/image.png'}}"
 			bindtap="getDetailImg"></image>
 	</view>
-	<view class="item line">
+	<view class="address line">
 		<text>备注信息：</text>
-		<input type="text" placeholder="此消息所有人可见"></input>
+		<input type="text" placeholder="此消息所有人可见" value="{{remark}}" bindinput="getRemark"></input>
 	</view>
-	<view class="item line">
+	<view class="address line">
 		<text>更多要求：</text>
 		<text style="color: #1296db" bindtap="showMore" wx:if="{{showMore}}">隐藏 〉</text>
 		<text style="color: #1296db" bindtap="showMore" wx:else>显示 〉</text>
 	</view>
 	<view class="show" wx:if="{{showMore}}">
-		<view class="item line dialogWidth">
-			<text>期望送达：</text>
+		<view class="address line dialogWidth">
+			<text>期望时间：</text>
 			<picker bindchange="bindTime" value="{{timeIndex}}" range="{{timeArray}}">
 				<text style="color:#a1a1a1">
 					{{timeArray[timeIndex]}} 〉
 				</text>
 			</picker>
 		</view>
-		<view class="item line dialogWidth">
+		<view class="address line dialogWidth">
+			<text>性别限制：</text>
+			<picker bindchange="bindGender" value="{{genderIndex}}" range="{{genderArray}}">
+				<text style="color:#a1a1a1">
+					{{genderArray[genderIndex]}} 〉
+				</text>
+			</picker>
+		</view>
+		<view class="address line dialogWidth">
 			<text>加急打赏：</text>
 			<switch bindchange="handleChangeReward"></switch>
 		</view>
-		<view class="item line dialogWidth" wx:if="{{isReward}}">
+		<view class="address line dialogWidth" wx:if="{{isReward}}">
 			<text>额外赏金：</text>
 			<input type="text" value="{{ addMoney }}" bindinput="getAddMoney" placeholder="输入赏金" />
 		</view>

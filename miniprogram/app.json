@@ -4,7 +4,7 @@
     "pages/order/order",
     "pages/mes/mes",
     "pages/mine/mine",
-    "pages/getExpress/getExpress",
+    "pages/get/get",
     "pages/address/address",
     "pages/addAddress/addAddress",
     "pages/selectBuilding/selectBuilding",

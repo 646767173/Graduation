@@ -54,7 +54,7 @@ Page({
 
 	updateAddress(){
 		wx.navigateTo({
-			url: '../address/address',
+			url: '../address/address?url=updateInfo',
 		})
 	},
 

@@ -75,7 +75,7 @@
 	z-index: 10;
 }
 
-.container .detail .expressCode{
+.container .detail .detailImg{
 	width: 270rpx;
 	height: 180rpx;
 	position: absolute;

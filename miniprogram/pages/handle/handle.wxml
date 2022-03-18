@@ -1,28 +1,30 @@
 <view class="container">
+	<view class="title">其它易送</view>
 	<view class="item">
-		<text>办理内容：</text>
+		<text>*办理内容：</text>
 	</view>
 	<view class="detail">
-		<textarea class="content" cols="20" rows="6" placeholder="请输入办理事件详情内容">
-		</textarea>
+		<textarea class="content" cols="30" rows="10" placeholder="请输入办理内容详情或上传相关图片" value="{{detail}}" bindinput="getDetail"></textarea>
+			<image class="detailImg" src="{{detailImg}}"></image>
+			<image class="getImg" src="{{ detailImg ? '../../images/image_fill.png' : '../../images/image.png'}}" bindtap="getDetailImg"></image>
 	</view>
 	<view class="item">
-		<text>办理地址：</text>
+		<text>*办理地址：</text>
 	</view>
 	<view class="detail">
-		<textarea class="content" cols="20" rows="6" placeholder="请输入办理事件详情地址">
+		<textarea class="content" cols="20" rows="6" placeholder="请输入办理内容地址" value="{{destination}}" bindinput="getDestination">
 		</textarea>
 	</view>
 	<view class="item line">
 		<text>备注信息：</text>
-		<input type="text" placeholder="特殊情况可备注"></input>
+		<input type="text" value="{{remark}}" bindinput="getRemark" placeholder="特殊情况可备注"></input>
 	</view>
 	<view class="bottom_tip">
 		<text>信息仅接单的同学可见!</text>
 		<text>需支付</text>
-		<text>10元</text>
+		<text>{{money}}元</text>
 	</view>
-	<button type="submit" class="submit">立即发布</button>
+	<my-button text="立即发布" bindtap="submit"></my-button>
 	<view class="statement">
 		<text>免责声明</text>
 		<text>用户条款&隐私策略</text>

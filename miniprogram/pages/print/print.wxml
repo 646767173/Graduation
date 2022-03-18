@@ -1,22 +1,22 @@
 <view class="container">
 	<view class="title">打印内容</view>
+	<view class="item line">
+		<text>*收件地址：</text>
+		<text bindtap="selectAddress">{{address ? address : '请选择地址 〉'}}</text>
+	</view>
 	<view bindtap="uploadFile" class="item line">
-		<text>上传原件：</text>
+		<text>*上传原件：</text>
 		<view class="uploaded">
 			<image wx:if="{{!uploaded}}" src="../../images/add.png"></image>
 			<text wx:else>已上传文件，点击重传〉</text>
 		</view>
 	</view>
 	<view class="item line">
-		<text>收件地址：</text>
-		<text bindtap="selectAddress">{{address ? address : '请选择地址 〉'}}</text>
-	</view>
-	<view class="item line">
-		<text>打印页数：</text>
+		<text>*打印页数：</text>
 		<input type="text" placeholder="输入页数" value="{{pageNum}}" bindinput="getPageNumber"/>
 	</view>
 	<view class="item line">
-		<text>打印份数：</text>
+		<text>*打印份数：</text>
 		<input type="text" placeholder="输入份数" value="{{copyNum}}" bindinput="getCopyNumber"/>
 	</view>
 	<view class="item line">
@@ -40,14 +40,14 @@
 		</picker>
 	</view>
 	<view class="bottom_tip">
-		<text>黑白 <text class="color_red">1元/张</text> </text>
+		<text>黑白 <text class="color_red">0.5元/张</text> </text>
 		<text>彩印 <text class="color_red">2元/张</text> </text>
 		<text>双面打印 <text class="color_red">张数费用×2</text> </text>
-		<text>跑腿费 <text class="color_red">2元/份</text> </text>
+		<text>跑腿费 <text class="color_red">1元/份</text> </text>
 		<text class="total color_red" bindtap="reflashMoney">(点击刷新费用)需支付 {{money}} 元</text>
 		
 	</view>
-	<button bindtap="submit" class="submit">立即发布</button>
+	<my-button text="立即发布" bindtap="submit"></my-button>
 	<view class="statement">
 		<text>免责声明</text>
 		<text>用户条款&隐私策略</text>

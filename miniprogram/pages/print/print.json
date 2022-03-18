@@ -1,4 +1,4 @@
 {
-  "usingComponents": {},
+  "usingComponents": {"my-button":"../../components/myButton/myButton"},
   "navigationBarTitleText":"帮我印"
 }

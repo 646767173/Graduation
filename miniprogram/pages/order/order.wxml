@@ -24,12 +24,11 @@
 				{{item.state}}
 			</view>
 		</view>
-
 		<view class="order_content">
 			<view class="content">
 				{{item.info}}
 			</view>
-			<view class="address">
+			<view class="address" wx:if="{{item.address}}">
 				目的地：{{item.address}}
 			</view>
 		</view>

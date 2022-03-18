@@ -1,4 +1,4 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText":"其他易送"
+  "usingComponents": {"my-button":"../../components/myButton/myButton"},
+  "navigationBarTitleText":"其它易送"
 }

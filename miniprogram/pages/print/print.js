@@ -25,7 +25,7 @@ Page({
 	},
 	selectAddress(e){
 		wx.navigateTo({
-			url: '../address/address',
+			url: '../address/address?url=print',
 		})
 	},
 	uploadFile(e){//上传打印文件
@@ -94,11 +94,11 @@ Page({
 		let pageNum = that.pageNum;
 		let copyNum = that.copyNum;
 		if(colorPrint && twoSided){
-			Money = (pageNum*1)*(copyNum*4) + (copyNum*2)
+			Money = (pageNum*1)*(copyNum*4) + (copyNum*1)
 		}else if(colorPrint || twoSided){
-			Money = (pageNum*1)*(copyNum*2) + (copyNum*2)
+			Money = (pageNum*1)*(copyNum*2) + (copyNum*1)
 		}else{
-			Money = (pageNum*1)*(copyNum*1) + (copyNum*2)
+			Money = (pageNum*0.5)*(copyNum*1) + (copyNum*1)
 		};
 		this.setData({
 			money:Money
@@ -112,7 +112,7 @@ Page({
 		if( !that.pageNum || !that.copyNum || !that.uploaded || !that.address){// 必选项
 			wx.showToast({
 				icon:'none',
-				title: '填入的信息不全，请补全关键项',
+				title: '您填入的信息不全，请补全带*号的必填项',
 			})
 			return;
 		};

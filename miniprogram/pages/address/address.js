@@ -5,13 +5,15 @@ Page({
 	 */
 	data: {
 		address:[],
+		url:''
 	},
 	selectAddress(e){
 		const {index} = e.currentTarget.dataset;
 		const address = this.data.address[index];
+		const url = this.data.url;
 		wx.setStorageSync('addressNow', address);
-		wx.navigateBack({
-			delta: 1,
+		wx.redirectTo({
+			url: `../${url}/${url}`,
 		})
 	},
 	addAddress(e){
@@ -53,8 +55,10 @@ Page({
 	 */
 	onLoad: function (options) {
 		const address = wx.getStorageSync('address');
+		const url = options.url;
 		this.setData({
 			address,
+			url
 		})
 	},
 

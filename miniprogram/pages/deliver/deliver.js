@@ -8,27 +8,35 @@ Page({
 		typeList:[
 			{
 				name:'小尺寸',
-				mes:'小尺寸：手机巴掌大小--(20cm*50cm)',
+				mes:'小尺寸：手机巴掌大小--(20cm*50cm)，费用8元',
+				money:8
 			},
 			{
 				name:'中尺寸',
-				mes:'中尺寸：鞋服盒子大小--(30cm*60cm)',
+				mes:'中尺寸：鞋服盒子大小--(40cm*80cm)，费用10元',
+				money:10
 			},
 			{
 				name:'大尺寸',
-				mes:'大尺寸：重量≥5kg',
+				mes:'大尺寸：重量≥5kg，费用12元',
+				money:12
 			},
 			],
 		typeNow:0,
 		showMore:false,
+		isReward:false,
+		address:'',
+		destination:'',
+		remark:'',
+		money:8,
+		addMoney:0,
+		userInfo:{},
 		timeIndex:0,
 		timeArray:['不限时间','尽快送达','今天中午1点前','今天晚上8点前'],
-		genderIndex:0,
-		genderArray:['不限性别','仅限男生','仅限女生'],
 	},
-	bindGender(e){
+	getDestination(e){
 		this.setData({
-			genderIndex:e.detail.value,
+			destination: e.detail.value
 		})
 	},
 	bindTime(e){
@@ -39,7 +47,8 @@ Page({
 	selectType(e){
 		const {id,mes} = e.currentTarget.dataset;
 		this.setData({
-			typeNow: id
+			typeNow: id,
+			money: this.data.typeList[id].money,
 		})
 		wx.showToast({
 			icon: 'none',
@@ -51,9 +60,96 @@ Page({
 			showMore:!this.data.showMore
 		})
 	},
+	handleChangeReward(e){
+		const value = e.detail.value;
+		this.setData({
+			isReward:value,
+		})
+	},
+	getAddMoney(e){
+			this.setData({
+				addMoney:Number(e.detail.value)
+			})
+	},
+	getRemark(e){
+		this.setData({
+			remark: e.detail.value
+		})
+	},
 	selectAddress(e){
 		wx.navigateTo({
-			url: '../address/address',
+			url: '../address/address?url=deliver',
+		})
+	},
+	getDetail(e){
+		this.setData({
+			detail: e.detail.value
+		})
+	},
+	getDetailImg(){
+		wx.chooseImage({
+			count: 1,
+			sizeType:['compressed','original'],
+			sourceType: ['album', 'camera'],
+			success: (res) => {
+				wx.showLoading({
+					title: '加载中',
+				})
+				const random = Math.floor(Math.random()*1000);
+				wx.cloud.uploadFile({
+					cloudPath:`buyImg/${random}.png`,
+					filePath: res.tempFilePaths[0],
+					success:(res) =>{
+						let fileID = res.fileID;
+						this.setData({
+							detailImg:fileID
+						})
+						wx.hideLoading();
+					}
+				})
+			}
+		})
+	},
+	submit(){
+		const that = this.data;
+		// 判断必填值是否填入
+		if(!that.address || !that.destination || !(that.detail || that.detailImg) ){
+			wx.showToast({
+				icon:'none',
+				title: '您填入的信息不全，请补全带*号的必填项',
+			})
+			return;
+		}
+		db.collection('order').add({
+			data:{
+				name: '帮我送',//模块名
+				time: getTimeNow(),//当前时间
+				money: that.money + that.addMoney,//订单金额
+				state: '待帮助',//订单状态
+				address: that.address,//取件地址
+				info: {//订单信息
+					size: that.typeList[that.typeNow].name,// 送件大小
+					destination: that.destination,//送件目的地
+					remark: that.remark,// 备注信息
+					expectTime: that.timeArray[that.timeIndex],// 期望时间
+					addMoney: that.addMoney,// 额外打赏
+				},
+				userInfo: that.userInfo//用户信息
+			},
+			success:(res)=>{
+				wx.switchTab({
+					url: '../index/index',
+				});
+				wx.showToast({
+					title: '发布成功',
+				});
+			},
+			fail:(res)=>{
+				wx.showToast({
+					inco:'none',
+					title: '发布失败',
+				})
+			}
 		})
 	},
 	/**
