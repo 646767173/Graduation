@@ -7,9 +7,8 @@
 </scroll-view>
 
 <view wx:if="{{tabNow === 0}}" class="body">
-<!-- 只有是当前页才会展示对应的内容 -->
-	<view class="tips">
-		向上滑动以刷新~
+	<view class="tips" bindtap="refresh" data-item="{{tabNow}}">
+		点我刷新~
 	</view>
 	<view class="order" wx:for="{{orderList}}" wx:key="index">
 		<view class="order_top">
@@ -20,7 +19,7 @@
 					<text>{{item.time}}</text>
 				</view>
 			</view>
-			<view class="{{item.state === '待帮助' ? 'top_right' : 'top_right_finish'}}">
+			<view class="{{item.stateColor}}">
 				{{item.state}}
 			</view>
 		</view>
@@ -28,15 +27,120 @@
 			<view class="content">
 				{{item.info}}
 			</view>
-			<view class="address" wx:if="{{item.address}}">
-				目的地：{{item.address}}
+			<view class="address">
+				{{ item.state === '待帮助' ? '目的地：' + item.address : '订单已帮助' }}
 			</view>
 		</view>
 		<view class="order_bottom">
 			<view class="money">
 				金额 ¥{{item.money}}
 			</view>
-			<view class="accept" wx:if="{{item.state==='待帮助'}}">
+			<view class="accept" wx:if="{{item.state==='待帮助'}}" bindtap="orderReceive" data-item="{{ item }}">
+				接单
+			</view>
+		</view>
+	</view>
+</view>
+
+<view wx:if="{{tabNow === 1}}" class="body">
+	<view class="tips" bindtap="refresh" data-item="{{tabNow}}">
+		点我刷新~
+	</view>
+	<view class="order" wx:for="{{myOrder}}" wx:key="index">
+		<view class="order_top">
+			<view class="top_left">
+				<image src="{{item.userInfo.avatarUrl}}"></image>
+				<view class="name">
+					<text>{{item.name}}</text>
+					<text>{{item.time}}</text>
+				</view>
+			</view>
+			<view class="{{item.stateColor}}">
+				{{item.state}}
+			</view>
+		</view>
+		<view class="order_content">
+			<view class="content">
+				{{item.info}}
+			</view>
+			<view class="address">
+				{{item.state==='待帮助' ? '目的地：'+item.address : '订单已帮助'}}
+			</view>
+		</view>
+		<view class="order_bottom">
+			<view class="money">
+				金额 ¥{{item.money}}
+			</view>
+			<view class="accept" wx:if="{{item.state==='帮助中'}}" bindtap="toFinish" data-item="{{item}}">
+				帮助完成
+			</view>
+		</view>
+	</view>
+</view>
+
+<view wx:if="{{tabNow === 2}}" class="body">
+	<view class="tips" bindtap="refresh" data-item="{{tabNow}}">
+		点我刷新~
+	</view>
+	<view class="order" wx:for="{{helpOrder}}" wx:key="index">
+		<view class="order_top">
+			<view class="top_left">
+				<image src="{{item.userInfo.avatarUrl}}"></image>
+				<view class="name">
+					<text>{{item.name}}</text>
+					<text>{{item.time}}</text>
+				</view>
+			</view>
+			<view class="{{item.stateColor}}">
+				{{item.state}}
+			</view>
+		</view>
+		<view class="order_content">
+			<view class="content">
+				{{item.info}}
+			</view>
+			<view class="address">
+				{{item.state==='待帮助' ? '目的地：'+item.address : '订单已帮助'}}
+			</view>
+		</view>
+		<view class="order_bottom">
+			<view class="money">
+				金额 ¥{{item.money}}
+			</view>
+		</view>
+	</view>
+</view>
+
+<view wx:if="{{tabNow === 3}}" class="body">
+	<view class="tips" bindtap="refresh">
+		点我刷新~
+	</view>
+	<view class="order" wx:for="{{needOrder}}" wx:key="index">
+		<view class="order_top">
+			<view class="top_left">
+				<image src="{{item.userInfo.avatarUrl}}"></image>
+				<view class="name">
+					<text>{{item.name}}</text>
+					<text>{{item.time}}</text>
+				</view>
+			</view>
+			<view class="{{item.stateColor}}">
+				{{item.state}}
+			</view>
+		</view>
+		<view class="order_content">
+			<view class="content">
+				{{item.info}}
+			</view>
+			<view class="address">
+				{{item.state==='待帮助' ? '目的地：'+item.address : '订单已帮助'}}
+			</view>
+		</view>
+		<view class="order_bottom">
+			<view class="money">
+				金额 ¥{{item.money}}
+			</view>
+			<view class="accept" wx:if="{{item.state==='待帮助'}}" bindtap="orderReceive" data-item="{{ item }}">
 				接单
 			</view>
 		</view>

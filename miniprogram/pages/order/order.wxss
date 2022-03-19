@@ -73,6 +73,13 @@
 	font-size: 28rpx;
 }
 
+.order .order_top .top_right_help {
+  color: rgb(16, 103, 209);
+  background-color: rgba(16, 103, 209, .2);
+  padding: 15rpx;
+  font-size: 28rpx;
+}
+
 .order .order_top .top_right_finish{
 	color: rgb(255, 153, 0);
 	background-color: rgb(255, 247, 235);
