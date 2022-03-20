@@ -11,6 +11,9 @@ Page({
 		myOrder:[],
 		helpOrder:[],
 		needOrder:[],
+		isReceiver:false,//是不是接单员
+		finishNum:0,//已完成总数
+		finishMoney:0,//已完成总收益
 	},
 	selectTab(e){
 		const {id} = e.currentTarget.dataset;
@@ -23,11 +26,13 @@ Page({
 			this.getMyOrder();
 		}else if(id === 2){
 			this.getHelpOrder();
+			this.getFinishNum();
+			this.getFinishMoney();
 		}else if(id === 3){
 			this.getNeedOrder();
 		}
 	},
-	getMyOrder(e){//获取我的订单
+	getMyOrder(e){//获取我发布的订单
 		wx.showLoading({
 			title: '加载中',
 		});
@@ -94,6 +99,14 @@ Page({
 		})
 	},
 	orderReceive(e){//接单
+		if (!this.data.isReceiver) {//进入则说明不是接单员，直接return
+			wx.showModal({
+				content: '您不是接单员，请先申请成为接单员',
+				title:'提示',
+				showCancel:false
+			})
+			return;
+		}
 		wx.showLoading({
 			title: '加载中',
 		});
@@ -192,6 +205,47 @@ Page({
 				break;
 		}
 	},
+	isReceiver(){//是不是接单员
+		db.collection('applyOrder').where({
+			_openid: wx.getStorageSync('openID'),
+			state:'通过'
+		}).get({
+			success:(res)=>{
+				this.setData({
+					isReceiver:!!res.data.length
+				})
+			}
+		})
+		
+	},
+	getFinishNum(){//已完成总数
+		db.collection('order').where({
+			receivePerson:wx.getStorageSync('openID'),
+			state:'已完成'
+		}).count({
+			success:(res)=>{
+				this.setData({
+					finishNum: res.total
+				})
+			}
+		})
+	},
+	getFinishMoney(){//已完成总收益
+		const $ = db.command.aggregate;
+		db.collection('order').aggregate().match({
+			receivePerson:wx.getStorageSync('openID'),
+			state:'已完成'
+		}).group({
+			_id:null,
+			totalNum: $.sum('$money')
+		}).end({
+			success:(res)=>{
+				this.setData({
+					finishMoney:res.list[0].totalNum
+				})
+			}
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -199,6 +253,7 @@ Page({
 		this.setData({//把本地缓存的openID存入data中
 			openID:wx.getStorageSync('openID')
 		})
+		this.isReceiver();
 	},
 
 	/**

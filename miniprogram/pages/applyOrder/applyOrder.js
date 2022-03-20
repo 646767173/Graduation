@@ -64,9 +64,19 @@ Page({
 	submit(){
 		// wx.setStorageSync('applyMes', this.data.applyMes);//存储在Storage
 		const that = this.data;
+		// 判断是否填入必选项
+		if(!that.applyMes.applyImg || !that.applyMes.userID || !that.applyMes.name ){
+			wx.showToast({
+				icon:'none',
+				title: '您填入的信息不全，请填写内容项',
+			})
+			return;
+		}
 		db.collection('applyOrder').add({// 提交到数据库
 			data:{
-				applyMes:that.applyMes,
+				name:that.applyMes.name,
+				userID:that.applyMes.userID,
+				applyImg:that.applyMes.applyImg,
 				userInfo:that.userInfo,
 				state:'待审核'
 			},

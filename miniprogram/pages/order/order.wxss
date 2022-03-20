@@ -120,3 +120,29 @@
 	border-bottom-right-radius: 18rpx;
 	font-size: 28rpx;
 }
+
+.finishInfo{
+	display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  padding: 40rpx 0;
+}
+
+.finishInfo .finishNum,.finishMoney {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.finishInfo .finishNum text:first-child, .finishMoney text:first-child {
+  font-weight: bold;
+  font-size: 26rpx;
+}
+
+.finishInfo .finishNum text:last-child, .finishMoney text:last-child {
+  color: #a1a1a1;
+}

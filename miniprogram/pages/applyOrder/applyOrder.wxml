@@ -15,7 +15,7 @@
 		<input type="text" placeholder="你的证件号"  value="{{applyMes.userID}}" bindinput="getUserID"/>
 	</view>
 	<view class="upload">
-		<text>相关证件证明：</text>
+		<text>相关证件图片：</text>
 		<view class="load" bindtap="uploadImg">
 			<text wx:if="{{!applyMes.applyImg}}">+</text>
 			<image wx:else src="{{applyMes.applyImg}}"></image>

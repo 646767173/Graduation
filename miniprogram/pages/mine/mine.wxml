@@ -16,15 +16,7 @@
 	<image wx:if="{{hasUserInfo}}" class="load" src="../../images/right.png"></image>
 </view>
 
-<button class="functions mt">
-	<view class="left">
-		<image src="../../images/YuE.png"></image>
-		<text>我的余额</text>
-	</view>
-	<text class="right">〉</text>
-</button>
-
-<button class="functions" bindtap="toApplyOrder">
+<button class="functions mt" bindtap="toApplyOrder">
 	<view class="left">
 		<image src="../../images/GeRenXinXi.png"></image>
 		<text>申请接单</text>
@@ -32,10 +24,18 @@
 	<text class="right">〉</text>
 </button>
 
-<button class="functions mt">
+<button class="functions" bindtap="toExamine">
+	<view class="left">
+		<image src="../../images/ShenHe.png"></image>
+		<text>接单审核</text>
+	</view>
+	<text class="right">〉</text>
+</button>
+
+<button class="functions mt" bindtap="updateInfo">
 	<view class="left">
 		<image src="../../images/ZhangHaoAnQuan.png"></image>
-		<text>账号安全</text>
+		<text>个人信息</text>
 	</view>
 	<text class="right">〉</text>
 </button>

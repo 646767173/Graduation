@@ -17,8 +17,8 @@
     "pages/help/help",
     "pages/applyOrder/applyOrder",
     "pages/applyOrderLoading/applyOrderLoading",
+    "pages/examine/examine",
     "pages/agreement/agreement",
-
     "components/myButton/myButton",
     "components/myModal/myModal"
   ],
