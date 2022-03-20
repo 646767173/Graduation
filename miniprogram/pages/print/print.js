@@ -24,8 +24,9 @@ Page({
 		})
 	},
 	selectAddress(e){
+		wx.setStorageSync('url', 'print');
 		wx.navigateTo({
-			url: '../address/address?url=print',
+			url: '../address/address',
 		})
 	},
 	uploadFile(e){//上传打印文件
@@ -108,6 +109,7 @@ Page({
 		})
 	},
 	submit(){
+		this.reflashMoney();
 		const that = this.data;
 		if( !that.pageNum || !that.copyNum || !that.uploaded || !that.address){// 必选项
 			wx.showToast({
@@ -197,7 +199,9 @@ Page({
 	 * 生命周期函数--监听页面卸载
 	 */
 	onUnload: function () {
-
+		wx.switchTab({
+			url: '../index/index',
+		})
 	},
 
 	/**

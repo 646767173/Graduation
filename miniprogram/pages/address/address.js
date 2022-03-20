@@ -1,4 +1,3 @@
-
 Page({
 	/**
 	 * 页面的初始数据
@@ -10,7 +9,7 @@ Page({
 	selectAddress(e){
 		const {index} = e.currentTarget.dataset;
 		const address = this.data.address[index];
-		const url = this.data.url;
+		const url = wx.getStorageSync('url');
 		wx.setStorageSync('addressNow', address);
 		wx.redirectTo({
 			url: `../${url}/${url}`,
@@ -43,7 +42,7 @@ Page({
 					wx.showToast({
 						title: '删除成功',
 					})
-					that.onLoad();
+					that.onShow();
 				} else {
 					return;
 				}
@@ -54,12 +53,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		const address = wx.getStorageSync('address');
-		const url = options.url;
-		this.setData({
-			address,
-			url
-		})
+
 	},
 
 	/**
@@ -73,7 +67,12 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+		const address = wx.getStorageSync('address');
+		const url = wx.getStorageSync('url');
+		this.setData({
+			address,
+			url
+		})
 	},
 
 	/**

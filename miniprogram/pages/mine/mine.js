@@ -28,6 +28,14 @@ Page({
 		})
 	},
 	updateInfo(){
+		const userInfo = wx.getStorageSync('userInfo');
+		if (!userInfo) {
+			wx.showToast({
+				title: '请先登录！',
+				icon:'none'
+			})
+			return;
+		}
 		if(this.data.hasUserInfo){
 			wx.navigateTo({
 				url: '../updateInfo/updateInfo',
@@ -35,6 +43,14 @@ Page({
 		}
 	},
 	toApplyOrder(){
+		const userInfo = wx.getStorageSync('userInfo');
+		if (!userInfo) {
+			wx.showToast({
+				title: '请先登录！',
+				icon:'none'
+			})
+			return;
+		}
 		const {state} = this.data;
 		switch (state) {
 			case 'success':
@@ -104,8 +120,23 @@ Page({
 					hasUserInfo:true,
 				})
 				wx.setStorageSync('userInfo', res.userInfo);//将获取的信息缓存
+				const openID = wx.getStorageSync('openID');
+				if(!openID){
+					wx.cloud.callFunction({
+						name:'getMyOpenID',
+						success:(res)=>{
+							const {openid} = res.result;
+							wx.setStorageSync('openID',openid);
+							this.isAdmin();
+						}
+					})
+				}
+				wx.showToast({
+					title: '登录成功，请进入个人信息完善手机号',
+					icon:'none'
+				});
 			}
-		})
+		});
 	},
 
 	// 老接口的方法

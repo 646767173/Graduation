@@ -146,3 +146,8 @@
 .finishInfo .finishNum text:last-child, .finishMoney text:last-child {
   color: #a1a1a1;
 }
+
+.blank{
+	color: #a1a1a1;
+	margin: 40rpx 260rpx;
+}

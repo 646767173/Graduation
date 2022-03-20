@@ -246,6 +246,12 @@ Page({
 			}
 		})
 	},
+	callPhone(e){//打电话
+		const {phone} = e.currentTarget.dataset;
+		wx.makePhoneCall({
+			phoneNumber: phone,
+		});
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */

@@ -17,7 +17,10 @@ Page({
 			userInfo:userInfo//键值对，同名时可简写
 		})
 	},
-	updatePhone(e){
+	updatePhone:utils.debounce(function(e){//updatePhone添加防抖
+		this.Phone(e);
+	}),
+	Phone(e){
 		let userInfo = this.data.userInfo;
 		userInfo.phone = e.detail.value;
 		this.setData({
@@ -53,8 +56,9 @@ Page({
 	},
 
 	updateAddress(){
+		wx.setStorageSync('url', 'updateInfo');
 		wx.navigateTo({
-			url: '../address/address?url=updateInfo',
+			url: '../address/address',
 		})
 	},
 
@@ -108,7 +112,9 @@ Page({
 	 * 生命周期函数--监听页面卸载
 	 */
 	onUnload: function () {
-
+		wx.switchTab({
+			url: '../mine/mine',
+		})
 	},
 
 	/**

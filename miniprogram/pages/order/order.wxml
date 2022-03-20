@@ -30,6 +30,9 @@
 			<view class="address">
 				{{ item.state === '待帮助' ? '目的地：' + item.address : '订单已帮助' }}
 			</view>
+			<view class="address" wx:if="{{item.state==='待帮助'}}" catchtap="callPhone" data-phone="{{item.userInfo.phone}}">
+				联系方式：{{item.userInfo.nickName}}/{{item.userInfo.phone}}
+			</view>
 		</view>
 		<view class="order_bottom">
 			<view class="money">
@@ -40,6 +43,7 @@
 			</view>
 		</view>
 	</view>
+	<view class="blank">滑到底啦！！！</view>
 </view>
 
 <view wx:if="{{tabNow === 1}}" class="body">
@@ -66,6 +70,9 @@
 			<view class="address">
 				{{item.state==='待帮助' ? '目的地：'+item.address : '订单已帮助'}}
 			</view>
+			<view class="address" wx:if="{{item.state==='待帮助'}}" catchtap="callPhone" data-phone="{{item.userInfo.phone}}">
+				联系方式：{{item.userInfo.nickName}}/{{item.userInfo.phone}}
+			</view>
 		</view>
 		<view class="order_bottom">
 			<view class="money">
@@ -76,6 +83,7 @@
 			</view>
 		</view>
 	</view>
+	<view class="blank">滑到底啦！！！</view>
 </view>
 
 <view wx:if="{{tabNow === 2}}" class="body">
@@ -119,6 +127,7 @@
 			</view>
 		</view>
 	</view>
+	<view class="blank">滑到底啦！！！</view>
 </view>
 
 <view wx:if="{{tabNow === 3}}" class="body">
@@ -145,6 +154,9 @@
 			<view class="address">
 				{{item.state==='待帮助' ? '目的地：'+item.address : '订单已帮助'}}
 			</view>
+			<view class="address" wx:if="{{item.state==='待帮助'}}" catchtap="callPhone" data-phone="{{item.userInfo.phone}}">
+				联系方式：{{item.userInfo.nickName}}/{{item.userInfo.phone}}
+			</view>
 		</view>
 		<view class="order_bottom">
 			<view class="money">
@@ -155,4 +167,5 @@
 			</view>
 		</view>
 	</view>
+	<view class="blank">滑到底啦！！！</view>
 </view>

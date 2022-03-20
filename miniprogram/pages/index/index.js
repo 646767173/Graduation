@@ -34,7 +34,20 @@ Page({
     }
   },
   toDetail(e){
-    var url = e.currentTarget.dataset.url;
+    const userInfo = wx.getStorageSync('userInfo');
+    const url = e.currentTarget.dataset.url;
+    if(!userInfo){
+      wx.showToast({
+        title: '请先登录！',
+        icon:'none'
+      })
+      setTimeout(() => {
+        wx.switchTab({
+          url: '../mine/mine',
+        })
+      }, 2000);
+      return;
+    }
     wx.navigateTo({
       url,
     })
@@ -57,16 +70,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    const openID = wx.getStorageSync('openID');
-    if(!openID){
-      wx.cloud.callFunction({
-        name:'getMyOpenID',
-        success:(res)=>{
-          const {openid} = res.result;
-          wx.setStorageSync('openID',openid);
-        }
-      })
-    }
+    
   },
 
   /**

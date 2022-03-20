@@ -76,8 +76,9 @@ Page({
 			})
 	},
 	selectAddress(e){
+		wx.setStorageSync('url', 'buy');
 		wx.navigateTo({
-			url: '../address/address?url=buy',
+			url: '../address/address',
 		})
 	},
 	getRemark(e){
@@ -206,7 +207,9 @@ Page({
 	 * 生命周期函数--监听页面卸载
 	 */
 	onUnload: function () {
-
+		wx.switchTab({
+			url: '../index/index',
+		})
 	},
 
 	/**

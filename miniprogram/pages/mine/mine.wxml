@@ -1,7 +1,7 @@
 <view class="info" bindtap="updateInfo">
 	<image class="avatar" src="{{ hasUserInfo ? userInfo.avatarUrl : '../../images/info.png'}}"></image>
 	<block wx:if="{{!hasUserInfo}}">
-		<button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile">
+		<button wx:if="{{canIUseGetUserProfile}}" catchtap="getUserProfile">
 			点击授权登录
 		</button>
 		<button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">
@@ -24,7 +24,7 @@
 	<text class="right">〉</text>
 </button>
 
-<button class="functions" bindtap="toExamine">
+<button class="functions" wx:if="{{admin}}" bindtap="toExamine">
 	<view class="left">
 		<image src="../../images/ShenHe.png"></image>
 		<text>接单审核</text>

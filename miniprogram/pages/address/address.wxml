@@ -13,11 +13,11 @@
 				<text>默认地址</text>
 			</view>
 			<view class="bottom_right">
-				<view class="edit" bindtap="edit" data-index="{{index}}">
+				<view class="edit" catchtap="edit" data-index="{{index}}">
 					<image class="iconSize" src="../../images/edit.png"></image>
 					<text>编辑</text>
 				</view>
-				<view class="delete" bindtap="delete" data-index="{{index}}">
+				<view class="delete" catchtap="delete" data-index="{{index}}">
 					<image class="iconSize" src="../../images/delete.png"></image>
 					<text>删除</text>
 				</view>
