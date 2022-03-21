@@ -95,6 +95,14 @@ Page({
 		})
 	},
 	toHelp(){
+		const userInfo = wx.getStorageSync('userInfo');
+		if (!userInfo) {
+			wx.showToast({
+				title: '请先登录！',
+				icon:'none'
+			})
+			return;
+		}
 		wx.navigateTo({
 			url: '../help/help',
 		})

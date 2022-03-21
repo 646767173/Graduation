@@ -4,7 +4,7 @@ Page({
    */
   data: {
     banner:[
-      '../../images/statics.png','../../images/2021.png'
+      '../../images/title.png','../../images/content.png'
     ],
     indexFunctions:[
       {

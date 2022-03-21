@@ -1,5 +1,5 @@
 <view class="logo">
-	<image src="../../images/2022.png"></image>
+	<image src="../../images/title.png"></image>
 </view>
 
 <view class="desc">
@@ -9,13 +9,13 @@
 <view class="contact">联系我们</view>
 
 <view class="cell">
-	对本程序中的错误与疏漏之处，望不吝赐教
+	邮箱：Guang_Tom@foxmail.com
 </view>
 
 <view class="cell">
-	对本程序中的错误与疏漏之处，望不吝赐教
+	WeChat：Guang_2260
 </view>
 
-<view class="cell">
-	对本程序中的错误与疏漏之处，望不吝赐教
+<view class="bottom">
+	对本程序中出现的错误与疏漏之处，望不吝赐教
 </view>
