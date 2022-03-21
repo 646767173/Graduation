@@ -131,10 +131,6 @@ Page({
 						}
 					})
 				}
-				wx.showToast({
-					title: '登录成功，请进入个人信息完善手机号',
-					icon:'none'
-				});
 			}
 		});
 	},

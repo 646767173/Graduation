@@ -1,5 +1,5 @@
 .banner_body, .banner_item, .banner_item image{
-		width: 100%
+		width: 100%;
 }
 
 .container{

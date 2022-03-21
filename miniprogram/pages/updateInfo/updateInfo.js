@@ -17,16 +17,6 @@ Page({
 			userInfo:userInfo//键值对，同名时可简写
 		})
 	},
-	updatePhone:utils.debounce(function(e){//updatePhone添加防抖
-		this.Phone(e);
-	}),
-	Phone(e){
-		let userInfo = this.data.userInfo;
-		userInfo.phone = e.detail.value;
-		this.setData({
-			userInfo,
-		})
-	},
 
 	updateAvatar(){
 		let userInfo = this.data.userInfo;

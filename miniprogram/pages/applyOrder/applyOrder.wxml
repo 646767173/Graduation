@@ -5,7 +5,6 @@
 	<view class="tips" bindtap="showTips">
 		申请接单常见问题说明
 	</view>
-	<my-modal wx:if="{{showTips}}" title="{{title}}" content="{{content}}" bindclose="showTips"></my-modal>
 	<view class="item">
 		<text>姓名：</text>
 		<input type="text" placeholder="你的姓名" value="{{applyMes.name}}" bindinput="getName"/>
@@ -21,12 +20,12 @@
 			<image wx:else src="{{applyMes.applyImg}}"></image>
 		</view>
 	</view>
-	<view class="item" bindtap="toAgreement">
+	<!-- <view class="item" bindtap="toAgreement">
 		<view class="left">
 			<image src="../../images/xieYi.png"></image>
 			<text>电子协议</text>
 		</view>
 		<view class="right">〉</view>
-	</view>
+	</view> -->
 	<my-button text="提交申请" bindtap="submit"></my-button>
 </view>

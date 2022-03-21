@@ -36,7 +36,9 @@ Page({
 		detail:'',
 		detailImg:'',
 		remark:'',
-		userInfo:{}
+		userInfo:{},
+		name:'',
+		phone:''
 	},
 	bindGender(e){
 		this.setData({
@@ -147,7 +149,9 @@ Page({
 					expectGender: that.genderArray[that.genderIndex],// 性别限制
 					addMoney: that.addMoney,// 额外打赏
 				},
-				userInfo: that.userInfo//用户信息
+				userInfo: that.userInfo,//用户信息
+				phone: that.phone,//收件电话
+				username: that.name//收件姓名
 			},
 			success:(res)=>{
 				wx.switchTab({
@@ -186,9 +190,11 @@ Page({
 		const address = wx.getStorageSync('addressNow');
 		const userInfo = wx.getStorageSync('userInfo');
 		if(address){
-			const {build,houseNumber} = address;
+			const {build,houseNumber,phone,name} = address;
 			this.setData({
-				address:`${build}-${houseNumber}`
+				address:`${build}-${houseNumber}`,
+				phone,
+				name,
 			})
 		}
 		this.setData({

@@ -7,9 +7,6 @@ Page({
 	data: {
 		userInfo:{},
 		applyMes:{},
-		showTips:false,
-		title: '常见问题',
-		content: '1证件号指学生证上面的号码，2相关证件证面指的是学生证正面',
 	},
 	getName: utils.debounce(function(e){//给getName加防抖
 		this.Name(e);
@@ -28,8 +25,10 @@ Page({
 		})
 	},
 	showTips(){
-		this.setData({
-			showTips: !this.data.showTips
+		wx.showModal({
+			content: '1.证件号指您学生证上面的号码，2.相关证件正面指的是学生证正面',
+			showCancel: true,
+			title: '常见问题',
 		})
 	},
 	uploadImg(){
@@ -56,13 +55,12 @@ Page({
 			}
 		})
 	},
-	toAgreement(){
+	/* toAgreement(){
 		wx.navigateTo({
 			url: '../agreement/agreement',
 		})
-	},
+	}, */
 	submit(){
-		// wx.setStorageSync('applyMes', this.data.applyMes);//存储在Storage
 		const that = this.data;
 		// 判断是否填入必选项
 		if(!that.applyMes.applyImg || !that.applyMes.userID || !that.applyMes.name ){

@@ -13,35 +13,33 @@
 </view>
 
 <view wx:if="{{tabNow===1}}" class="body">
-	<view class="item" wx:for="{{9}}" wx:key="index">
+	<view class="item" wx:for="{{9}}" wx:key="index" bindtap="selectBuilding" data-index="{{index}}">
 		{{index + 1 }} 层
 	</view>
 </view>
 
-
 <view wx:if="{{tabNow===2}}" class="body">
-	<view class="item" wx:for="{{5}}" wx:key="index">
+	<view class="item" wx:for="{{5}}" wx:key="index" bindtap="selectBuilding" data-index="{{index}}">
 		{{index + 1 }} 层
 	</view>
 </view>
 
 <view wx:if="{{tabNow===3}}" class="body">
-	<view class="item" wx:for="{{9}}" wx:key="index">
+	<view class="item" wx:for="{{9}}" wx:key="index" bindtap="selectBuilding" data-index="{{index}}">
 		{{index + 1 }} 层
 	</view>
 </view>
 
 <view wx:if="{{tabNow===4}}" class="body">
-	<view class="item" wx:for="{{3}}" wx:key="index">
+	<view class="item" wx:for="{{3}}" wx:key="index" bindtap="selectBuilding" data-index="{{index}}">
 		{{index + 7 }} 栋
 	</view>
 </view>
 
 <view wx:if="{{tabNow===5}}" class="body">
-	<view class="item" wx:for="{{6}}" wx:key="index">
-		{{item}} 栋
+	<view class="item" wx:for="{{6}}" wx:key="index" bindtap="selectBuilding" data-index="{{index}}">
+		{{item+1}} 栋
 	</view>
 </view>
-
 
 <view class="showAll">————已显示全部————</view>

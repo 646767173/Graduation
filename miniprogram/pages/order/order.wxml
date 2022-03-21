@@ -30,8 +30,8 @@
 			<view class="address">
 				{{ item.state === '待帮助' ? '目的地：' + item.address : '订单已帮助' }}
 			</view>
-			<view class="address" wx:if="{{item.state==='待帮助'}}" catchtap="callPhone" data-phone="{{item.userInfo.phone}}">
-				联系方式：{{item.userInfo.nickName}}/{{item.userInfo.phone}}
+			<view class="address" wx:if="{{item.state==='待帮助'}}" catchtap="callPhone" data-phone="{{item.phone}}">
+				联系方式：{{item.username}}/{{item.phone}}
 			</view>
 		</view>
 		<view class="order_bottom">
@@ -70,8 +70,8 @@
 			<view class="address">
 				{{item.state==='待帮助' ? '目的地：'+item.address : '订单已帮助'}}
 			</view>
-			<view class="address" wx:if="{{item.state==='待帮助'}}" catchtap="callPhone" data-phone="{{item.userInfo.phone}}">
-				联系方式：{{item.userInfo.nickName}}/{{item.userInfo.phone}}
+			<view class="address" wx:if="{{item.state==='待帮助'}}" catchtap="callPhone" data-phone="{{item.phone}}">
+				联系方式：{{item.username}}/{{item.phone}}
 			</view>
 		</view>
 		<view class="order_bottom">
@@ -154,8 +154,8 @@
 			<view class="address">
 				{{item.state==='待帮助' ? '目的地：'+item.address : '订单已帮助'}}
 			</view>
-			<view class="address" wx:if="{{item.state==='待帮助'}}" catchtap="callPhone" data-phone="{{item.userInfo.phone}}">
-				联系方式：{{item.userInfo.nickName}}/{{item.userInfo.phone}}
+			<view class="address" wx:if="{{item.state==='待帮助'}}" catchtap="callPhone" data-phone="{{item.phone}}">
+				联系方式：{{item.username}}/{{item.phone}}
 			</view>
 		</view>
 		<view class="order_bottom">

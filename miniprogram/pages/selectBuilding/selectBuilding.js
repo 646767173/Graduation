@@ -1,18 +1,36 @@
-// pages/selectBuilding/selectBuilding.js
 Page({
-
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
 		tabList:['教学楼','英东楼','图书馆','科学楼','北区宿舍','南区宿舍'],
 		tabNow:0,
-		nanqu:['A','B','C','D','E','F']
 	},
 	selectBuilding(e){
 		const that = this.data;
 		const index = e.currentTarget.dataset.index;
-		const build = `${that.tabList[that.tabNow]}-${index+2}层`;
+		let build;
+		// 楼栋分支处理
+		switch (that.tabNow) {
+			case 1://英东楼
+				build = `${that.tabList[that.tabNow]}-${index+1}层`;
+				break;
+			case 2://图书馆
+				build = `${that.tabList[that.tabNow]}-${index+1}层`;
+				break;
+			case 3://科学楼
+				build = `${that.tabList[that.tabNow]}-${index+1}层`;
+				break;
+			case 4://北区宿舍
+				build = `${that.tabList[that.tabNow]}-${index+7}栋`;
+				break;
+			case 5://南区宿舍
+				build = `${that.tabList[that.tabNow]}-${index+1}栋`;
+				break;
+			default://教学楼
+				build = `${that.tabList[that.tabNow]}-${index+2}层`;
+				break;
+		}
 		wx.redirectTo({
 			url: `../addAddress/addAddress?build=${build}`,
 		})

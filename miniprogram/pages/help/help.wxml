@@ -1,2 +1,24 @@
-<!--pages/help/help.wxml-->
-<text>pages/help/help.wxml</text>
+<view class="body">
+	<view class="item bb">
+		<text>姓名：</text>
+		<input type="text" placeholder="你的姓名" value="{{name}}" bindinput="getName"/>
+	</view>
+	<view class="item bb">
+		<text>联系方式：</text>
+		<input type="text" placeholder="你的联系方式"  value="{{phone}}" bindinput="getPhone"/>
+	</view>
+	<view class="item">
+		<text>问题描述：</text>
+	</view>
+	<view class="detail">
+		<textarea class="content" cols="30" rows="10" placeholder="请简要描述一下您遇到的问题"  value="{{mes.problem}}" bindinput="getProblem"></textarea>
+	</view>
+	<view class="upload">
+		<text>相关证件图片：</text>
+		<view class="load" bindtap="uploadImg">
+			<text wx:if="{{!mes.img}}">+</text>
+			<image wx:else src="{{mes.img}}"></image>
+		</view>
+	</view>
+	<my-button text="提交反馈" bindtap="submit"></my-button>
+</view>

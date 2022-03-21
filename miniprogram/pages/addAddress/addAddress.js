@@ -39,6 +39,13 @@ Page({
 		})
 	},
 	save(e){
+		if(!build || !houseNumber || !name || !phone){// 判断信息是否输入完全
+			wx.showToast({
+				title: '您输入的信息不全，请完善',
+				icon:'none'
+			});
+			return;
+		}
 		const { build,houseNumber,name,phone,defaultAddress,isEdit,editNow,index } = this.data;
 		let address = wx.getStorageSync('address');
 		if (!isEdit&&defaultAddress&&address) {
@@ -69,9 +76,9 @@ Page({
 			}
 		}
 		wx.setStorageSync('address', address);
-		wx.navigateBack({
-			delta: 2,
-		});
+		wx.redirectTo({
+			url: '../address/address',
+		})
 	},
 	/**
 	 * 生命周期函数--监听页面加载

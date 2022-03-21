@@ -33,6 +33,8 @@ Page({
 		userInfo:{},
 		timeIndex:0,
 		timeArray:['不限时间','尽快送达','今天中午1点前','今天晚上8点前'],
+		name:'',
+		phone:''
 	},
 	getDestination(e){
 		this.setData({
@@ -135,7 +137,9 @@ Page({
 					expectTime: that.timeArray[that.timeIndex],// 期望时间
 					addMoney: that.addMoney,// 额外打赏
 				},
-				userInfo: that.userInfo//用户信息
+				userInfo: that.userInfo,//用户信息
+				phone: that.phone,//收件电话
+				username: that.name//收件姓名
 			},
 			success:(res)=>{
 				wx.switchTab({
@@ -174,9 +178,11 @@ Page({
 		const address = wx.getStorageSync('addressNow');
 		const userInfo = wx.getStorageSync('userInfo');
 		if(address){
-			const {build,houseNumber} = address;
+			const {build,houseNumber,phone,name} = address;
 			this.setData({
-				address:`${build}-${houseNumber}`
+				address:`${build}-${houseNumber}`,
+				phone,
+				name,
 			})
 		}
 		this.setData({
