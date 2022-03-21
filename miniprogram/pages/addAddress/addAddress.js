@@ -39,6 +39,7 @@ Page({
 		})
 	},
 	save(e){
+		const { build,houseNumber,name,phone,defaultAddress,isEdit,editNow,index } = this.data;
 		if(!build || !houseNumber || !name || !phone){// 判断信息是否输入完全
 			wx.showToast({
 				title: '您输入的信息不全，请完善',
@@ -46,7 +47,6 @@ Page({
 			});
 			return;
 		}
-		const { build,houseNumber,name,phone,defaultAddress,isEdit,editNow,index } = this.data;
 		let address = wx.getStorageSync('address');
 		if (!isEdit&&defaultAddress&&address) {
 			for (let i = 0; i < address.length; i++) {

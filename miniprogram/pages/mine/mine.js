@@ -52,41 +52,35 @@ Page({
 			return;
 		}
 		const {state} = this.data;
-		switch (state) {
-			case 'success':
-				wx.showModal({
-					title: '提示',
-					content: '您已是接单员了，请勿重复申请',
-					showCancel:false
-				})
-				break;
-			case 'fail':
-				wx.showModal({
-					title: '提示',
-					content: '您之前提交的申请未通过，可继续申请',
-					success:(res)=>{
-						const {confirm} = res;
-						if(confirm){
-							wx.navigateTo({
-								url: '../applyOrder/applyOrder',
-							})
-						}
+		if(state=='success'){
+			wx.showModal({
+				title: '提示',
+				content: '您已是接单员了，请勿重复申请',
+				showCancel:false
+			})
+		}else if(state=='fail'){
+			wx.showModal({
+				title: '提示',
+				content: '您之前提交的申请未通过，可继续申请',
+				success:(res)=>{
+					const {confirm} = res;
+					if(confirm){
+						wx.navigateTo({
+							url: '../applyOrder/applyOrder',
+						})
 					}
-				})
-				break;
-			case 'loading':
-				wx.showModal({
-					title: '提示',
-					content: '您的申请正在审核中，请耐心等待',
-					showCancel:false
-				})
-				break;
-			default:
-				wx.navigateTo({
-					url: '../applyOrder/applyOrder',
-				})
-				break;
-			
+				}
+			})
+		}else if(state=='loading'){
+			wx.showModal({
+				title: '提示',
+				content: '您的申请正在审核中，请耐心等待',
+				showCancel:false
+			})
+		}else{
+			wx.navigateTo({
+				url: '../applyOrder/applyOrder',
+			})
 		}
 	},
 	toAboutUs(){
@@ -155,6 +149,20 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		
+	},
+
+	/**
+	 * 生命周期函数--监听页面初次渲染完成
+	 */
+	onReady: function () {
+
+	},
+
+	/**
+	 * 生命周期函数--监听页面显示
+	 */
+	onShow: function () {
 		if(wx.getUserProfile){//存在的话，我就可以使用
 			this.setData({
 				canIUseGetUserProfile:true//令是否可用为true
@@ -193,20 +201,6 @@ Page({
 				})
 			}
 		})
-	},
-
-	/**
-	 * 生命周期函数--监听页面初次渲染完成
-	 */
-	onReady: function () {
-
-	},
-
-	/**
-	 * 生命周期函数--监听页面显示
-	 */
-	onShow: function () {
-
 	},
 
 	/**

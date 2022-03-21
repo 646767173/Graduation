@@ -55,11 +55,6 @@ Page({
 			}
 		})
 	},
-	/* toAgreement(){
-		wx.navigateTo({
-			url: '../agreement/agreement',
-		})
-	}, */
 	submit(){
 		const that = this.data;
 		// 判断是否填入必选项

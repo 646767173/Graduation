@@ -43,8 +43,8 @@ Page({
 	 * 生命周期函数--监听页面卸载
 	 */
 	onUnload: function () {
-		wx.navigateBack({
-			delta: 2,//直接返回到上上页
+		wx.switchTab({
+			url: '../mine/mine',
 		})
 	},
 

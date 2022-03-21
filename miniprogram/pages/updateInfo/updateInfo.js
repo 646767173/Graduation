@@ -59,12 +59,6 @@ Page({
 		})
 		wx.switchTab({
 			url: '../mine/mine',
-			// switchTab不会调用onload，需要进行如下优化
-			success: function (e) {
-				var page = getCurrentPages().pop();
-				if (page == undefined || page == null) return;
-				page.onLoad();
-			}
 		})
 	},
 	/**

@@ -190,19 +190,14 @@ Page({
 			icon:'loading'
 		});
 		const tabNow = this.data.tabNow;
-		switch (tabNow) {
-			case 1:
-				this.getMyOrder();
-				break;
-			case 2:
-				this.getHelpOrder();
-				break;
-			case 3:
-				this.getNeedOrder();
-				break;
-			default:
-				this.onShow();
-				break;
+		if(tabNow===1){
+			this.getMyOrder();
+		}else if(tabNow===2){
+			this.getHelpOrder();
+		}else if(tabNow===3){
+			this.getNeedOrder()
+		}else if(tabNow===0){
+			this.onShow();
 		}
 	},
 	isReceiver(){//是不是接单员

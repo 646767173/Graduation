@@ -10,7 +10,16 @@ Page({
 		detail:'',
 		detailImg:'',
 		remark:'',
-		userInfo:{}
+		userInfo:{},
+		address:'',
+		name:'',
+		phone:''
+	},
+	selectAddress(e){
+		wx.setStorageSync('url', 'handle');
+		wx.navigateTo({
+			url: '../address/address',
+		})
 	},
 	getDestination(e){
 		this.setData({
@@ -54,7 +63,7 @@ Page({
 	submit(){
 		const that = this.data;
 		// 判断必填值是否填入
-		if(!that.destination || !(that.detail || that.detailImg) ){
+		if(!that.address || !that.destination || !(that.detail || that.detailImg) ){
 			wx.showToast({
 				icon:'none',
 				title: '您填入的信息不全，请补全带*号的必填项',
@@ -67,13 +76,16 @@ Page({
 				time: getTimeNow(),//当前时间
 				money: that.money,//订单金额
 				state: '待帮助',//订单状态
+				address:that.address,//您的地址
 				info: {//订单信息
 					detail: that.detail,// 办理内容详情
 					detailImg: that.detailImg,// 详情图
 					destination: that.destination,// 办理地址
 					remark: that.remark,// 备注信息
 				},
-				userInfo: that.userInfo// 用户信息
+				userInfo: that.userInfo,// 用户信息
+				phone:that.phone,//电话
+				username:that.name//姓名
 			},
 			success:(res)=>{
 				wx.switchTab({
@@ -109,7 +121,16 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
+		const address = wx.getStorageSync('addressNow');
 		const userInfo = wx.getStorageSync('userInfo');
+		if(address){
+			const {build,houseNumber,phone,name} = address;
+			this.setData({
+				address:`${build}-${houseNumber}`,
+				phone,
+				name,
+			})
+		}
 		this.setData({
 			userInfo,
 		})

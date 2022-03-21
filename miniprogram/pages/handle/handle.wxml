@@ -1,5 +1,9 @@
 <view class="container">
 	<view class="title">其它易送</view>
+	<view class="item line">
+		<text>*您的地址：</text>
+		<text bindtap="selectAddress">{{address ? address : '请选择地址 〉'}}</text>
+	</view>
 	<view class="item">
 		<text>*办理内容：</text>
 	</view>
