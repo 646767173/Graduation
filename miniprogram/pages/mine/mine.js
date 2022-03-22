@@ -173,8 +173,8 @@ Page({
 			hasUserInfo:!!userInfo,//两次取反确保为布尔值
 			userInfo:userInfo,
 		});
-		let state;//申请接单当前状态
 		this.isAdmin();//是否管理员？
+		let state;//申请接单当前状态
 		db.collection('applyOrder').where({
 			_openid:wx.getStorageSync('openID')
 		}).get({
@@ -184,13 +184,10 @@ Page({
 					for(let i = 0;i < data.length;i++){
 						if (data[i].state === '通过') {
 							state = 'success';
-							break;
 						}else if(data[i].state === '不通过') {
 							state = 'fail';
-							break;
 						}else{
 							state = 'loading';
-							break;
 						}
 					}
 				}else{

@@ -251,10 +251,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		this.setData({//把本地缓存的openID存入data中
-			openID:wx.getStorageSync('openID')
-		})
-		this.isReceiver();
+		
 	},
 
 	/**
@@ -268,6 +265,10 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
+		this.setData({//把本地缓存的openID存入data中
+			openID:wx.getStorageSync('openID')
+		})
+		this.isReceiver();
 		db.collection('order').get({//实现全部订单的查询
 			success:(res)=>{
 				const {data} = res;
