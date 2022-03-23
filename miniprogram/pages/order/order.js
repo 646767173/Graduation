@@ -120,10 +120,11 @@ Page({
 			})
 			return;
 		} */
-		db.collection('order').doc(_id).update({//对数据库进行修改
+		wx.cloud.callFunction({
+			name:'receiveOrder',
 			data:{
-				receivePerson:this.data.openID,//添加属性，值为接单人openID
-				state:'帮助中'//修改状态为帮助中
+				_id,
+				openID:this.data.openID
 			},
 			success:(res)=>{
 				if(tabNow===0)
@@ -146,15 +147,24 @@ Page({
 		});
 		const {item} = e.currentTarget.dataset;
 		const {_id} = item;
-		db.collection('order').doc(_id).update({
-			data:{
-				state:'已完成'
-			},
+		wx.cloud.callFunction({
+			name:'finishOrder',
+			data:{ _id },
 			success:(res)=>{
 				this.getMyOrder();
 				wx.hideLoading();
+				wx.showToast({
+					title: '已完成',
+				})
+			},
+			fail:(res)=>{
+				wx.hideLoading();
+				wx.showToast({
+					title: '操作失败',
+					icon:'error'
+				})
 			}
-		});
+		})
 	},
 	formatInfo(orderInfo){//把不同模块的订单进行不同的格式处理后，展示在页面上
 		const{name,info} = orderInfo;
@@ -285,7 +295,7 @@ Page({
 			fail:(res) => {
 				wx.showToast({
 					icon:'none',
-					title: '查询失败',
+					title: '查询失败，服务器每日请求次数用完',
 				})
 			}
 		})

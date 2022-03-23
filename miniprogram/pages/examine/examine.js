@@ -11,13 +11,21 @@ Page({
 			title: '加载中...',
 		})
 		const {item:{_id},name} = e.currentTarget.dataset;
-		db.collection('applyOrder').doc(_id).update({
-			data:{
-				state:name,
-				examinePerson:wx.getStorageSync('openID')//记录审核员id
-			},
+		const openID = wx.getStorageSync('openID');
+		wx.cloud.callFunction({
+			name:'examineApply',
+			data:{ _id,name,openID },
 			success:(res)=>{
 				this.onShow();
+				wx.showToast({
+					title: '操作成功',
+				})
+			},
+			fail:(res)=>{
+				wx.showToast({
+					title: '操作失败',
+					icon:'error'
+				})
 			}
 		})
 		wx.hideLoading();

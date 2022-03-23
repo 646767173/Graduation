@@ -5,7 +5,7 @@
 	</view>
 	<image src="{{ item.applyImg }}"></image>
 	<view class="btn">
-		<button class="warn" size="mini" data-item="{{item}}" data-name="不通过" bindtap="examine">不通过</button>
-		<button class="primary" size="mini" data-item="{{item}}" data-name="通过" bindtap="examine">通过</button>
+		<button type="warn" size="mini" data-item="{{item}}" data-name="不通过" bindtap="examine">不通过</button>
+		<button type="primary" size="mini" data-item="{{item}}" data-name="通过" bindtap="examine">通过</button>
 	</view>
 </view>
