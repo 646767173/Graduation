@@ -14,6 +14,20 @@ Page({
 		isReceiver:false,//是不是接单员
 		finishNum:0,//已完成总数
 		finishMoney:0,//已完成总收益
+		regionIndex:0,
+		regionArray:['全部','教学楼','英东楼','图书馆','科学楼','北区宿舍','北区饭堂','北门宣传栏','饭堂小卖部','南区宿舍','南区饭堂'],
+	},
+	bindRegion(e){
+		this.setData({
+			regionIndex:e.detail.value,
+		})
+		const arr = this.data.regionArray;
+		const index = this.data.regionIndex;
+		// 开始查询
+		this.getNeedOrder(arr[index]);
+		wx.showToast({
+			title: '选择成功！',
+		})
 	},
 	selectTab(e){
 		const {id} = e.currentTarget.dataset;
@@ -80,23 +94,48 @@ Page({
 		wx.showLoading({
 			title: '加载中',
 		});
-		db.collection('order').where({
-			state:'待帮助'
-		}).get({
-			success:(res)=>{
-				const{data} = res;
-				data.forEach(item=>{
-					if(item.address == undefined)//未输入目的地，则办理地址为目的地
-						item.address = item.info.destination;
-					item.info = this.formatInfo(item);
-					item.stateColor = this.formatState(item.state)
-				});
-				this.setData({
-					needOrder:data
+		console.log(e);
+		if (e==='全部'|| !e) {
+			db.collection('order').where({
+				state:'待帮助'
+			}).get({
+				success:(res)=>{
+					const{data} = res;
+					data.forEach(item=>{
+						if(item.address == undefined)//未输入目的地，则办理地址为目的地
+							item.address = item.info.destination;
+						item.info = this.formatInfo(item);
+						item.stateColor = this.formatState(item.state)
+					});
+					this.setData({
+						needOrder:data
+					})
+					wx.hideLoading();
+				}
+			})
+		}else{
+			db.collection('order').where({
+				state:'待帮助',
+				'info.destination': db.RegExp({
+					regexp: e,
+					options: 'i'
 				})
-				wx.hideLoading();
-			}
-		})
+			}).get({
+				success:(res)=>{
+					const{data} = res;
+					data.forEach(item=>{
+						if(item.address == undefined)//未输入目的地，则办理地址为目的地
+							item.address = item.info.destination;
+						item.info = this.formatInfo(item);
+						item.stateColor = this.formatState(item.state)
+					});
+					this.setData({
+						needOrder:data
+					})
+					wx.hideLoading();
+				}
+			})
+		}
 	},
 	orderReceive(e){//接单
 		if (!this.data.isReceiver) {//进入则说明不是接单员，直接return
