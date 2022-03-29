@@ -7,10 +7,15 @@
 </scroll-view>
 
 <view wx:if="{{tabNow === 0}}" class="body">
-	<view class="tips" bindtap="refresh" data-item="{{tabNow}}">
+	<view class="tips" bindtap="refresh">
 		点我刷新~
 	</view>
-	<view class="order" wx:for="{{orderList}}" wx:key="index">
+	<view class="regionInfo">
+		<picker bindchange="bindRegion" value="{{regionIndex}}" range="{{regionArray}}">
+			<text>您选择的区域：<text style="color:#1296db">{{regionArray[regionIndex]}} 〉</text></text>
+		</picker>
+	</view>
+	<view class="order" wx:for="{{needOrder}}" wx:key="index">
 		<view class="order_top">
 			<view class="top_left">
 				<image src="{{item.userInfo.avatarUrl}}"></image>
@@ -28,7 +33,7 @@
 				{{item.info}}
 			</view>
 			<view class="address">
-				{{ item.state === '待帮助' ? '目的地：' + item.address : '订单已帮助' }}
+				{{item.state==='待帮助' ? '目的地：'+item.address : '订单已帮助'}}
 			</view>
 			<view class="address" wx:if="{{item.state==='待帮助'}}" catchtap="callPhone" data-phone="{{item.phone}}">
 				联系方式：{{item.username}}/{{item.phone}}
@@ -131,15 +136,10 @@
 </view>
 
 <view wx:if="{{tabNow === 3}}" class="body">
-	<view class="tips" bindtap="refresh">
+	<view class="tips" bindtap="refresh" data-item="{{tabNow}}">
 		点我刷新~
 	</view>
-	<view class="regionInfo">
-		<picker bindchange="bindRegion" value="{{regionIndex}}" range="{{regionArray}}">
-			<text>您选择的区域：<text style="color:#1296db">{{regionArray[regionIndex]}} 〉</text></text>
-		</picker>
-	</view>
-	<view class="order" wx:for="{{needOrder}}" wx:key="index">
+	<view class="order" wx:for="{{orderList}}" wx:key="index">
 		<view class="order_top">
 			<view class="top_left">
 				<image src="{{item.userInfo.avatarUrl}}"></image>
@@ -157,7 +157,7 @@
 				{{item.info}}
 			</view>
 			<view class="address">
-				{{item.state==='待帮助' ? '目的地：'+item.address : '订单已帮助'}}
+				{{ item.state === '待帮助' ? '目的地：' + item.address : '订单已帮助' }}
 			</view>
 			<view class="address" wx:if="{{item.state==='待帮助'}}" catchtap="callPhone" data-phone="{{item.phone}}">
 				联系方式：{{item.username}}/{{item.phone}}

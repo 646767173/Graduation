@@ -4,8 +4,8 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		tabList:['全部','我发布的','我帮助的','正在求助'],
-		tabNow:0,//当前选中的数组下标，默认是全部
+		tabList:['正在求助','我发布的','我帮助的','全部订单'],
+		tabNow:0,//当前选中的数组下标，默认是正在求助
 		openID:'',//账号标识
 		orderList:[],
 		myOrder:[],
@@ -43,8 +43,53 @@ Page({
 			this.getFinishNum();
 			this.getFinishMoney();
 		}else if(id === 3){
-			this.getNeedOrder();
+			this.getAll();
 		}
+	},
+	getNeedOrder(e){//获取求助中的订单
+		wx.showLoading({
+			title: '加载中',
+		});
+		if (e==='全部'|| !e) {
+			db.collection('order').where({
+				state:'待帮助'
+			}).get({
+				success:(res)=>{
+					const{data} = res;
+					data.forEach(item=>{
+						if(item.address == undefined)//未输入目的地，则办理地址为目的地
+							item.address = item.info.destination;
+						item.info = this.formatInfo(item);
+						item.stateColor = this.formatState(item.state)
+					});
+					this.setData({
+						needOrder:data
+					})
+				}
+			})
+		}else{
+			db.collection('order').where({
+				state:'待帮助',
+				'info.destination': db.RegExp({
+					regexp: e,
+					options: 'i'
+				})
+			}).get({
+				success:(res)=>{
+					const{data} = res;
+					data.forEach(item=>{
+						if(item.address == undefined)//未输入目的地，则办理地址为目的地
+							item.address = item.info.destination;
+						item.info = this.formatInfo(item);
+						item.stateColor = this.formatState(item.state)
+					});
+					this.setData({
+						needOrder:data
+					})
+				}
+			})
+		}
+		wx.hideLoading();
 	},
 	getMyOrder(e){//获取我发布的订单
 		wx.showLoading({
@@ -90,52 +135,27 @@ Page({
 			}
 		})
 	},
-	getNeedOrder(e){//获取求助中的订单
-		wx.showLoading({
-			title: '加载中',
-		});
-		console.log(e);
-		if (e==='全部'|| !e) {
-			db.collection('order').where({
-				state:'待帮助'
-			}).get({
-				success:(res)=>{
-					const{data} = res;
-					data.forEach(item=>{
-						if(item.address == undefined)//未输入目的地，则办理地址为目的地
-							item.address = item.info.destination;
-						item.info = this.formatInfo(item);
-						item.stateColor = this.formatState(item.state)
-					});
-					this.setData({
-						needOrder:data
-					})
-					wx.hideLoading();
-				}
-			})
-		}else{
-			db.collection('order').where({
-				state:'待帮助',
-				'info.destination': db.RegExp({
-					regexp: e,
-					options: 'i'
+	getAll(e){//获取全部的订单
+		db.collection('order').get({//实现全部订单的查询
+			success:(res)=>{
+				const {data} = res;
+				data.forEach(item => {
+					if(item.address == undefined)//未输入目的地，则办理地址为目的地
+						item.address = item.info.destination;
+					item.info = this.formatInfo(item);
+					item.stateColor = this.formatState(item.state);
+				});
+				this.setData({
+					orderList: data,
 				})
-			}).get({
-				success:(res)=>{
-					const{data} = res;
-					data.forEach(item=>{
-						if(item.address == undefined)//未输入目的地，则办理地址为目的地
-							item.address = item.info.destination;
-						item.info = this.formatInfo(item);
-						item.stateColor = this.formatState(item.state)
-					});
-					this.setData({
-						needOrder:data
-					})
-					wx.hideLoading();
-				}
-			})
-		}
+			},
+			fail:(res) => {
+				wx.showToast({
+					icon:'none',
+					title: '查询失败，服务器每日请求次数用完',
+				})
+			}
+		})
 	},
 	orderReceive(e){//接单
 		if (!this.data.isReceiver) {//进入则说明不是接单员，直接return
@@ -244,7 +264,7 @@ Page({
 		}else if(tabNow===2){
 			this.getHelpOrder();
 		}else if(tabNow===3){
-			this.getNeedOrder()
+			this.getAll()
 		}else if(tabNow===0){
 			this.onShow();
 		}
@@ -315,29 +335,11 @@ Page({
 	 */
 	onShow: function () {
 		this.setData({//把本地缓存的openID存入data中
-			openID:wx.getStorageSync('openID')
+			openID:wx.getStorageSync('openID'),
+			regionIndex:0
 		})
 		this.isReceiver();
-		db.collection('order').get({//实现全部订单的查询
-			success:(res)=>{
-				const {data} = res;
-				data.forEach(item => {
-					if(item.address == undefined)//未输入目的地，则办理地址为目的地
-						item.address = item.info.destination;
-					item.info = this.formatInfo(item);
-					item.stateColor = this.formatState(item.state);
-				});
-				this.setData({
-					orderList: data,
-				})
-			},
-			fail:(res) => {
-				wx.showToast({
-					icon:'none',
-					title: '查询失败，服务器每日请求次数用完',
-				})
-			}
-		})
+		this.getNeedOrder();
 	},
 
 	/**
