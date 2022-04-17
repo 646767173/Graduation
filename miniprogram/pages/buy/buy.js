@@ -124,6 +124,7 @@ Page({
 	},
 	submit(){
 		const that = this.data;
+		const money = that.money+that.addMoney;
 		// 判断必填值是否填入
 		if(!that.address || !that.destination || !(that.detail || that.detailImg) ){
 			wx.showToast({
@@ -132,40 +133,58 @@ Page({
 			})
 			return;
 		}
-		db.collection('order').add({
-			data:{
-				name: '帮我买',//模块名
-				time: getTimeNow(),//当前时间
-				money: that.money + that.addMoney,//订单金额
-				state: '待帮助',//订单状态
-				address: that.address,//收件地址
-				info: {//订单信息
-					size: that.typeList[that.typeNow].name,// 商品大小
-					detail: that.detail,// 商品信息
-					detailImg: that.detailImg,// 商品图
-					destination: that.destination,//购买地址
-					remark: that.remark,// 备注信息
-					expectTime: that.timeArray[that.timeIndex],// 期望时间
-					expectGender: that.genderArray[that.genderIndex],// 性别限制
-					addMoney: that.addMoney,// 额外打赏
-				},
-				userInfo: that.userInfo,//用户信息
-				phone: that.phone,//收件电话
-				username: that.name//收件姓名
-			},
-			success:(res)=>{
-				wx.switchTab({
-					url: '../index/index',
-				});
-				wx.showToast({
-					title: '发布成功',
-				});
-			},
-			fail:(res)=>{
-				wx.showToast({
-					inco:'none',
-					title: '发布失败',
-				})
+		wx.showModal({
+			title: '请支付',
+			content: '需支付'+money+'元',
+			confirmText: '确认支付',
+			cancelText: '取消',
+			success(res) {
+				if (res.confirm) {//用户点击确定
+					wx.showToast({
+						title: '支付成功',
+					});
+					db.collection('order').add({
+						data:{
+							name: '帮我买',//模块名
+							time: getTimeNow(),//当前时间
+							money: that.money + that.addMoney,//订单金额
+							state: '待帮助',//订单状态
+							address: that.address,//收件地址
+							info: {//订单信息
+								size: that.typeList[that.typeNow].name,// 商品大小
+								detail: that.detail,// 商品信息
+								detailImg: that.detailImg,// 商品图
+								destination: that.destination,//购买地址
+								remark: that.remark,// 备注信息
+								expectTime: that.timeArray[that.timeIndex],// 期望时间
+								expectGender: that.genderArray[that.genderIndex],// 性别限制
+								addMoney: that.addMoney,// 额外打赏
+							},
+							userInfo: that.userInfo,//用户信息
+							phone: that.phone,//收件电话
+							username: that.name//收件姓名
+						},
+						success:(res)=>{
+							wx.switchTab({
+								url: '../index/index',
+							});
+							wx.showToast({
+								title: '发布成功',
+							});
+						},
+						fail:(res)=>{
+							wx.showToast({
+								inco:'none',
+								title: '发布失败',
+							})
+						}
+					})
+				} else if (res.cancel) {//用户点击取消
+					wx.showToast({
+						icon:'none',
+						title: '已取消',
+					});
+				}
 			}
 		})
 	},

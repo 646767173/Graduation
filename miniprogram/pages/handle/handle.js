@@ -62,6 +62,7 @@ Page({
 	},
 	submit(){
 		const that = this.data;
+		const money = that.money;
 		// 判断必填值是否填入
 		if(!that.address || !that.destination || !(that.detail || that.detailImg) ){
 			wx.showToast({
@@ -70,36 +71,54 @@ Page({
 			})
 			return;
 		}
-		db.collection('order').add({
-			data:{
-				name: '其他易送',//模块名
-				time: getTimeNow(),//当前时间
-				money: that.money,//订单金额
-				state: '待帮助',//订单状态
-				address:that.address,//您的地址
-				info: {//订单信息
-					detail: that.detail,// 办理内容详情
-					detailImg: that.detailImg,// 详情图
-					destination: that.destination,// 办理地址
-					remark: that.remark,// 备注信息
-				},
-				userInfo: that.userInfo,// 用户信息
-				phone:that.phone,//电话
-				username:that.name//姓名
-			},
-			success:(res)=>{
-				wx.switchTab({
-					url: '../index/index',
-				});
-				wx.showToast({
-					title: '发布成功',
-				});
-			},
-			fail:(res)=>{
-				wx.showToast({
-					inco:'none',
-					title: '发布失败',
-				})
+		wx.showModal({
+			title: '请支付',
+			content: '需支付'+money+'元',
+			confirmText: '确认支付',
+			cancelText: '取消',
+			success(res) {
+				if (res.confirm) {//用户点击确定
+					wx.showToast({
+						title: '支付成功',
+					});
+					db.collection('order').add({
+						data:{
+							name: '其他易送',//模块名
+							time: getTimeNow(),//当前时间
+							money: that.money,//订单金额
+							state: '待帮助',//订单状态
+							address:that.address,//您的地址
+							info: {//订单信息
+								detail: that.detail,// 办理内容详情
+								detailImg: that.detailImg,// 详情图
+								destination: that.destination,// 办理地址
+								remark: that.remark,// 备注信息
+							},
+							userInfo: that.userInfo,// 用户信息
+							phone:that.phone,//电话
+							username:that.name//姓名
+						},
+						success:(res)=>{
+							wx.switchTab({
+								url: '../index/index',
+							});
+							wx.showToast({
+								title: '发布成功',
+							});
+						},
+						fail:(res)=>{
+							wx.showToast({
+								inco:'none',
+								title: '发布失败',
+							})
+						}
+					})
+				} else if (res.cancel) {//用户点击取消
+					wx.showToast({
+						icon:'none',
+						title: '已取消',
+					});
+				}
 			}
 		})
 	},

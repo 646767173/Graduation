@@ -113,6 +113,7 @@ Page({
 	submit(){
 		this.reflashMoney();
 		const that = this.data;
+		const money = that.money;
 		if( !that.pageNum || !that.copyNum || !that.uploaded || !that.address){// 必选项
 			wx.showToast({
 				icon:'none',
@@ -120,39 +121,57 @@ Page({
 			})
 			return;
 		};
-		db.collection('order').add({
-			data:{
-				name:'帮我印',//模块名
-				time: getTimeNow(),//当前时间
-				money: that.money,//订单金额
-				state: '待帮助',//订单状态
-				address: that.address,//收件地址
-				info: {//订单信息
-					filePath: that.filePath,// 原件路径
-					pageNum: that.pageNum,// 打印页数
-					copyNum: that.copyNum,// 打印份数
-					colorPrint: that.colorPrint,// 是否彩印
-					double: that.twoSided,// 是否双面
-					remark: that.remark,// 备注信息
-					expectTime: that.timeArray[that.timeIndex],// 期望时间
-				},
-				userInfo: that.userInfo,//用户信息
-				phone: that.phone,//收件电话
-				username: that.name//收件姓名
-			},
-			success:(res)=>{
-				wx.switchTab({
-					url: '../index/index',
-				});
-				wx.showToast({
-					title: '发布成功',
-				});
-			},
-			fail:(res)=>{
-				wx.showToast({
-					inco:'none',
-					title: '发布失败',
-				})
+		wx.showModal({
+			title: '请支付',
+			content: '需支付'+money+'元',
+			confirmText: '确认支付',
+			cancelText: '取消',
+			success(res) {
+				if (res.confirm) {//用户点击确定
+					wx.showToast({
+						title: '支付成功',
+					});
+					db.collection('order').add({
+						data:{
+							name:'帮我印',//模块名
+							time: getTimeNow(),//当前时间
+							money: that.money,//订单金额
+							state: '待帮助',//订单状态
+							address: that.address,//收件地址
+							info: {//订单信息
+								filePath: that.filePath,// 原件路径
+								pageNum: that.pageNum,// 打印页数
+								copyNum: that.copyNum,// 打印份数
+								colorPrint: that.colorPrint,// 是否彩印
+								double: that.twoSided,// 是否双面
+								remark: that.remark,// 备注信息
+								expectTime: that.timeArray[that.timeIndex],// 期望时间
+							},
+							userInfo: that.userInfo,//用户信息
+							phone: that.phone,//收件电话
+							username: that.name//收件姓名
+						},
+						success:(res)=>{
+							wx.switchTab({
+								url: '../index/index',
+							});
+							wx.showToast({
+								title: '发布成功',
+							});
+						},
+						fail:(res)=>{
+							wx.showToast({
+								inco:'none',
+								title: '发布失败',
+							})
+						}
+					})
+				} else if (res.cancel) {//用户点击取消
+					wx.showToast({
+						icon:'none',
+						title: '已取消',
+					});
+				}
 			}
 		})
 	},
