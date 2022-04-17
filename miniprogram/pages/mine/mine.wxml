@@ -11,7 +11,6 @@
 	</block>
 	<view class="name" wx:if="{{hasUserInfo}}">
 		<text>{{userInfo.nickName}}</text>
-		<text>{{userInfo.gender === 0 ? '男' : '女'}}</text>
 	</view>
 	<image wx:if="{{hasUserInfo}}" class="load" src="../../images/right.png"></image>
 </view>

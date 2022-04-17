@@ -28,7 +28,7 @@ Page({
 		wx.showModal({
 			content: '1.证件号指您学生证上面的号码，2.相关证件正面指的是学生证正面',
 			showCancel: true,
-			title: '常见问题',
+			title: '内容说明',
 		})
 	},
 	uploadImg(){
