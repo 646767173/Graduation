@@ -1,0 +1,73 @@
+<view class="container">
+	<view class="title">{{order.name}}</view>
+
+	<view class="item" wx:if="{{!!order.info.destination}}">
+		<text>订单地址：</text>
+		<text>{{order.info.destination}}</text>
+	</view>
+	<view class="item" wx:if="{{!!order.info.detail}}">
+		<text>详情内容：</text>
+		<text>{{order.info.detail}}</text>
+	</view>
+	<view class="item" wx:if="{{!!order.info.detailImg}}">
+		<text>详情图片：</text>
+		<view class="img">
+			<image src="{{order.info.detailImg}}"></image>
+		</view>
+	</view>
+
+	<view class="item" wx:if="{{!!order.info.size}}">
+		<text>物品大小：</text>
+		<text>{{order.info.size}}</text>
+	</view>
+	
+	<view class="item" wx:if="{{!!order.info.filePath}}" bindtap="copy">
+		<text>文件URL：</text>
+		<text>{{order.info.filePath}}</text>
+	</view>
+	<view class="item" wx:if="{{!!order.info.colorPrint}}">
+		<text>是否彩印：</text>
+		<text>{{order.info.colorPrint ? '是' : '否'}}</text>
+	</view>
+	<view class="item" wx:if="{{!!order.info.double}}">
+		<text>是否双面打印：</text>
+		<text>{{order.info.double ? '是' : '否'}}</text>
+	</view>
+	<view class="item" wx:if="{{!!order.info.pageNum}}">
+		<text>打印页数：</text>
+		<text>{{order.info.pageNum}}</text>
+	</view>
+	<view class="item" wx:if="{{!!order.info.copyNum}}">
+		<text>打印份数：</text>
+		<text>{{order.info.copyNum}}</text>
+	</view>
+	
+	<view class="item" wx:if="{{!!order.username}}">
+		<text>联系人姓名：</text>
+		<text>{{order.username}}</text>
+	</view>
+	<view class="item" wx:if="{{!!order.phone}}">
+		<text>联系人电话：</text>
+		<text>{{order.phone}}</text>
+	</view>
+	<view class="item" wx:if="{{!!order.address}}">
+		<text>联系人地址：</text>
+		<text>{{order.address}}</text>
+	</view>
+	<view class="item" wx:if="{{!!order.info.expectTime}}">
+		<text>期待送达时间：</text>
+		<text>{{order.info.expectTime}}</text>
+	</view>
+	<view class="item" wx:if="{{!!order.info.expectGender}}">
+		<text>性别限制：</text>
+		<text>{{order.info.expectGender}}</text>
+	</view>
+	<view class="item" wx:if="{{!!order.info.addMoney}}">
+		<text>额外赏金：</text>
+		<text>{{order.info.addMoney}}元</text>
+	</view>
+	<view class="item" wx:if="{{!!order.info.remark}}">
+		<text>备注信息：</text>
+		<text>{{order.info.remark}}</text>
+	</view>
+</view>

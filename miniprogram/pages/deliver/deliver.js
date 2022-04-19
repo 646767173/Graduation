@@ -102,12 +102,17 @@ Page({
 				wx.cloud.uploadFile({
 					cloudPath:`buyImg/${random}.png`,
 					filePath: res.tempFilePaths[0],
-					success:(res) =>{
+					success: (res) => {
 						let fileID = res.fileID;
-						this.setData({
-							detailImg:fileID
+						wx.cloud.getTempFileURL({
+							fileList:[fileID],
+							success:(res)=>{
+								this.setData({
+									detailImg: res.fileList[0].tempFileURL
+								})
+								wx.hideLoading();
+							}
 						})
-						wx.hideLoading();
 					}
 				})
 			}
@@ -143,6 +148,8 @@ Page({
 							address: that.address,//取件地址
 							info: {//订单信息
 								size: that.typeList[that.typeNow].name,// 送件大小
+								detail: that.detail,// 物品信息
+								detailImg: that.detailImg,// 物品图
 								destination: that.destination,//送件目的地
 								remark: that.remark,// 备注信息
 								expectTime: that.timeArray[that.timeIndex],// 期望时间
@@ -150,7 +157,8 @@ Page({
 							},
 							userInfo: that.userInfo,//用户信息
 							phone: that.phone,//收件电话
-							username: that.name//收件姓名
+							username: that.name,//收件人姓名
+							createTime: db.serverDate()//用于排序的时间
 						},
 						success:(res)=>{
 							wx.switchTab({

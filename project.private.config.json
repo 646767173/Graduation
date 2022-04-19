@@ -259,6 +259,20 @@
 					"pathName": "pages/order/order",
 					"query": "",
 					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "pages/detail/detail",
+					"query": "",
+					"launchMode": "default",
+					"scene": null
+				},
+				{
+					"name": "",
+					"pathName": "pages/detail/detail",
+					"query": "id=d4107ab162394b37011d6d24757dc839",
+					"launchMode": "default",
+					"scene": null
 				}
 			]
 		}

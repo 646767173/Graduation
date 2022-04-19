@@ -114,8 +114,18 @@
 .order .order_bottom .accept{
 	color: #fff;
 	background-color: #1296db;
-	padding: 14rpx 56rpx;
-	margin-left: 18rpx;
+	padding: 14rpx 36rpx;
+	margin-right: 18rpx;
+	border-top-left-radius: 18rpx;
+	border-bottom-right-radius: 18rpx;
+	font-size: 28rpx;
+}
+
+.order .order_bottom .cancel{
+	color: #f00;
+	background-color: #ccc;
+	padding: 14rpx 36rpx;
+	margin-right: 18rpx;
 	border-top-left-radius: 18rpx;
 	border-bottom-right-radius: 18rpx;
 	font-size: 28rpx;

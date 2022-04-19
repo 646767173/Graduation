@@ -44,12 +44,17 @@ Page({
 				wx.cloud.uploadFile({
 					cloudPath:`getImg/${random}.png`,
 					filePath: res.tempFilePaths[0],
-					success:(res) =>{
+					success: (res) => {
 						let fileID = res.fileID;
-						this.setData({
-							detailImg:fileID
+						wx.cloud.getTempFileURL({
+							fileList:[fileID],
+							success:(res)=>{
+								this.setData({
+									detailImg: res.fileList[0].tempFileURL
+								})
+								wx.hideLoading();
+							}
 						})
-						wx.hideLoading();
 					}
 				})
 			}
@@ -96,7 +101,8 @@ Page({
 							},
 							userInfo: that.userInfo,// 用户信息
 							phone:that.phone,//电话
-							username:that.name//姓名
+							username: that.name,//收件人姓名
+							createTime: db.serverDate()//用于排序的时间
 						},
 						success:(res)=>{
 							wx.switchTab({

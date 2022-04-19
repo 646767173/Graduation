@@ -1,0 +1,43 @@
+.container{
+	width: 92%;
+	background-color: #fff;
+	margin: 30rpx auto;
+	border-radius: 30rpx;
+	box-shadow: 0 0 4rpx #a1a1a1;
+	padding: 20rpx 15rpx 20rpx 20rpx;
+}
+
+.container .title{
+	text-align: center;
+	font-size: 48rpx;
+	font-weight: bold;
+}
+
+.container .item{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+	margin: 30rpx auto;
+	padding-bottom: 22rpx;
+	border-bottom: 2rpx solid #d1d1d1;
+}
+
+.img{
+	padding: 100rpx 200rpx;
+	border: 2rpx dashed #a1a1a1;
+	color: #a1a1a1;
+	margin-top: 20rpx;
+	font-size: 40rpx;
+	border-radius: 10rpx;
+	position: relative;
+}
+
+.img image{
+	width: 400rpx;
+	height: 200rpx;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius:0 !important;
+}

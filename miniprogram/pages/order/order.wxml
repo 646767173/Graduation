@@ -40,11 +40,11 @@
 			</view>
 		</view>
 		<view class="order_bottom">
-			<view class="money">
-				金额 ¥{{item.money}}
-			</view>
 			<view class="accept" wx:if="{{item.state==='待帮助'}}" bindtap="orderReceive" data-item="{{ item }}">
 				接单
+			</view>
+			<view class="money">
+				金额 ¥{{item.money}}
 			</view>
 		</view>
 	</view>
@@ -80,11 +80,10 @@
 			</view>
 		</view>
 		<view class="order_bottom">
+			<view class="cancel" wx:if="{{item.state==='待帮助'}}" bindtap="toCancel" data-id="{{item._id}}">取消发布</view>
+			<view class="accept" wx:if="{{item.state==='帮助中'}}" bindtap="toFinish" data-id="{{item._id}}">帮助完成</view>
 			<view class="money">
 				金额 ¥{{item.money}}
-			</view>
-			<view class="accept" wx:if="{{item.state==='帮助中'}}" bindtap="toFinish" data-item="{{item}}">
-				帮助完成
 			</view>
 		</view>
 	</view>
@@ -127,6 +126,7 @@
 			</view>
 		</view>
 		<view class="order_bottom">
+			<view class="accept" wx:if="{{item.state==='帮助中'}}" bindtap="toDetail" data-id="{{item._id}}">查看详情</view>
 			<view class="money">
 				金额 ¥{{item.money}}
 			</view>
@@ -164,13 +164,10 @@
 			</view>
 		</view>
 		<view class="order_bottom">
-			<view class="money">
-				金额 ¥{{item.money}}
-			</view>
-			<view class="accept" wx:if="{{item.state==='待帮助'}}" bindtap="orderReceive" data-item="{{ item }}">
-				接单
-			</view>
+			<view class="accept" wx:if="{{item.state==='待帮助'}}" bindtap="orderReceive" data-item="{{ item }}">接单</view>
+			<view class="money">金额 ¥{{item.money}}</view>
 		</view>
 	</view>
 	<view class="blank">滑到底啦！！！</view>
 </view>
+

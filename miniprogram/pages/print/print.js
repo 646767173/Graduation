@@ -45,14 +45,19 @@ Page({
 					filePath: res.tempFiles[0].path,
 					success:(res)=>{
 						let filePath = res.fileID;
-						this.setData({
-							uploaded:true,
-							filePath,
-						});
-						wx.showToast({
-							title: '上传成功',
+						wx.cloud.getTempFileURL({
+							fileList:[filePath],
+							success:(res)=>{
+								this.setData({
+									uploaded:true,
+									filePath:res.fileList[0].tempFileURL
+								});
+								wx.showToast({
+									title: '上传成功',
+								})
+								wx.hideLoading();
+							}
 						})
-						wx.hideLoading();
 					},
 					fail:(res)=>{
 						wx.showToast({
@@ -149,7 +154,8 @@ Page({
 							},
 							userInfo: that.userInfo,//用户信息
 							phone: that.phone,//收件电话
-							username: that.name//收件姓名
+							username: that.name,//收件人姓名
+							createTime: db.serverDate()//用于排序的时间
 						},
 						success:(res)=>{
 							wx.switchTab({

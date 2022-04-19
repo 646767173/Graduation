@@ -17,6 +17,7 @@
     "pages/applyOrder/applyOrder",
     "pages/applyOrderLoading/applyOrderLoading",
     "pages/examine/examine",
+    "pages/detail/detail",
     "components/myButton/myButton"
   ],
   "window": {

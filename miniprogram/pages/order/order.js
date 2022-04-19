@@ -51,7 +51,7 @@ Page({
 			title: '加载中',
 		});
 		if (e==='全部'|| !e) {
-			db.collection('order').where({
+			db.collection('order').orderBy('createTime','desc').where({
 				state:'待帮助'
 			}).get({
 				success:(res)=>{
@@ -68,7 +68,7 @@ Page({
 				}
 			})
 		}else{
-			db.collection('order').where({
+			db.collection('order').orderBy('createTime','desc').where({
 				state:'待帮助',
 				'info.destination': db.RegExp({
 					regexp: e,
@@ -95,7 +95,7 @@ Page({
 		wx.showLoading({
 			title: '加载中',
 		});
-		db.collection('order').where({
+		db.collection('order').orderBy('createTime','desc').where({
 			_openid:this.data.openID
 		}).get({
 			success:(res)=>{
@@ -117,7 +117,7 @@ Page({
 		wx.showLoading({
 			title: '加载中',
 		});
-		db.collection('order').where({
+		db.collection('order').orderBy('createTime','desc').where({
 			receivePerson:this.data.openID
 		}).get({
 			success:(res)=>{
@@ -136,7 +136,7 @@ Page({
 		})
 	},
 	getAll(e){//获取全部的订单
-		db.collection('order').get({//实现全部订单的查询
+		db.collection('order').orderBy('createTime','desc').get({//实现全部订单的查询
 			success:(res)=>{
 				const {data} = res;
 				data.forEach(item => {
@@ -200,15 +200,41 @@ Page({
 			}
 		})
 	},
+	toCancel(e){//取消发布
+		const that = this;
+		wx.showModal({
+			title: '提示',
+			content: '取消发布后订单将会被删除，您确认取消吗',
+			success (res) {
+				if (res.confirm) {
+					const { id } = e.currentTarget.dataset;
+					wx.cloud.callFunction({
+						name:'deleteOrder',
+						data:{ id },
+						success:()=>{
+							that.getMyOrder();
+							wx.showToast({
+								title: '已取消发布',
+							});
+						}
+					})
+				} else if (res.cancel) {
+					wx.showToast({
+						icon:'none',
+						title: '已取消操作',
+					});
+				}
+			}
+		})
+	},
 	toFinish(e){//帮助完成
 		wx.showLoading({
 			title: '加载中',
 		});
-		const {item} = e.currentTarget.dataset;
-		const {_id} = item;
+		const {id} = e.currentTarget.dataset;
 		wx.cloud.callFunction({
 			name:'finishOrder',
-			data:{ _id },
+			data:{ id },
 			success:(res)=>{
 				this.getMyOrder();
 				wx.hideLoading();
@@ -225,8 +251,17 @@ Page({
 			}
 		})
 	},
+	toDetail(e){//跳转详情页
+		const {id} = e.currentTarget.dataset;
+		wx.navigateTo({
+			url: `../detail/detail?id=${id}`,
+		})
+	},
 	formatInfo(orderInfo){//把不同模块的订单进行不同的格式处理后，展示在页面上
 		const{name,info} = orderInfo;
+		if (!info.remark) {
+			info.remark = '无';
+		}
 		if (name === '帮我取') {
 			const {size,destination,expectTime,expectGender,addMoney,remark} = info;
 			return `取件大小: ${size} / 取件地址：${destination} / 性别限制：${expectGender} / 期望时间：${expectTime} / 额外打赏：${addMoney}元 / 备注：${remark} `
@@ -253,11 +288,7 @@ Page({
 			return 'top_right_finish';
 		}
 	},
-	refresh(e){//刷新订单
-		wx.showToast({
-			title: '正在刷新...',
-			icon:'loading'
-		});
+	refresh(){//刷新订单
 		const tabNow = this.data.tabNow;
 		if(tabNow===1){
 			this.getMyOrder();
@@ -268,6 +299,9 @@ Page({
 		}else if(tabNow===0){
 			this.onShow();
 		}
+		wx.showToast({
+			title: '刷新成功',
+		});
 	},
 	isReceiver(){//是不是接单员
 		db.collection('applyOrder').where({
