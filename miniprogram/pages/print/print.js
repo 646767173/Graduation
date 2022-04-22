@@ -73,21 +73,25 @@ Page({
 		this.setData({
 			pageNum:Number(e.detail.value),
 		})
+		this.reflashMoney();
 	},
 	getCopyNumber(e){//份数
 		this.setData({
 			copyNum:Number(e.detail.value),
 		})
+		this.reflashMoney();
 	},
 	getColorPrint(e){//彩印
 		this.setData({
 			colorPrint:e.detail.value,
 		})
+		this.reflashMoney();
 	},
 	getTwoSided(e){//双面打印
 		this.setData({
 			twoSided:e.detail.value,
 		})
+		this.reflashMoney();
 	},
 	getRemark(e){
 		this.setData({
@@ -95,24 +99,32 @@ Page({
 		})
 	},
 	reflashMoney(){
+		//收费标准 黑白0.5元/张; 彩印1元/张; 双面打印张数费用x2; 跑腿费1元/份
 		let Money;
 		let that = this.data;
 		let colorPrint = that.colorPrint;
 		let twoSided = that.twoSided;
-		let pageNum = that.pageNum;
-		let copyNum = that.copyNum;
-		if(colorPrint && twoSided){
-			Money = (pageNum*1)*(copyNum*4) + (copyNum*1)
-		}else if(colorPrint || twoSided){
+		let pageNum = that.pageNum;//页数
+		let copyNum = that.copyNum;//份数
+		if(colorPrint && twoSided){//彩印且双面
 			Money = (pageNum*1)*(copyNum*2) + (copyNum*1)
-		}else{
+		}else if(colorPrint && twoSided==false){//仅彩印
+			Money = (pageNum*1)*(copyNum*1) + (copyNum*1)
+		}else if(twoSided && colorPrint==false){//仅双面
+			Money = (pageNum*0.5)*(copyNum*2) + (copyNum*1)
+		}else{//不彩印且不双面
 			Money = (pageNum*0.5)*(copyNum*1) + (copyNum*1)
 		};
 		this.setData({
 			money:Money
 		})
-		wx.showToast({
-			title: '刷新费用成功',
+	},
+	howMuch(){//弹出收费标准框
+		wx.showModal({
+			title:'收费标准',
+			content:'黑白 0.5元/张; 彩印 1元/张; 双面打印 张数费用x2; 跑腿费 1元/份',
+			showCancel:false,
+			confirmText:'已了解'
 		})
 	},
 	submit(){

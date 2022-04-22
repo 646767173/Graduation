@@ -80,7 +80,7 @@
 			</view>
 		</view>
 		<view class="order_bottom">
-			<view class="cancel" wx:if="{{item.state==='待帮助'}}" bindtap="toCancel" data-id="{{item._id}}">取消发布</view>
+			<view class="cancel" wx:if="{{item.state==='待帮助'}}" bindtap="toCancel" data-id="{{item._id}}">撤回发布</view>
 			<view class="accept" wx:if="{{item.state==='帮助中'}}" bindtap="toFinish" data-id="{{item._id}}">帮助完成</view>
 			<view class="money">
 				金额 ¥{{item.money}}

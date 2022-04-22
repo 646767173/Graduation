@@ -58,10 +58,9 @@
 	text-align: center;
 	margin-top: 30rpx;
 }
-.container .bottom_tip text{ font-size: 28rpx; color: #919191; }
-.container .bottom_tip text:last-child{ margin-top: 10rpx; font-size: 28rpx; }
-.color_red{ color: red !important; }
-.total{font-size: 46rpx !important; font-weight: bold !important;}
+
+.container .bottom_tip text:nth-child(1){ color: #1296db; margin-bottom: 20rpx;}
+.container .bottom_tip text:nth-child(3){ color: red;}
 
 .container .statement{
 	color: #1296db;

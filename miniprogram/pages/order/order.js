@@ -191,6 +191,9 @@ Page({
 				else
 					this.getNeedOrder();
 				wx.hideLoading();
+				wx.showToast({
+					title: '已接单',
+				})
 			},
 			fail:(res)=>{
 				wx.showToast({
@@ -204,7 +207,7 @@ Page({
 		const that = this;
 		wx.showModal({
 			title: '提示',
-			content: '取消发布后订单将会被删除，您确认取消吗',
+			content: '撤回发布的订单将被删除，您确认撤回吗',
 			success (res) {
 				if (res.confirm) {
 					const { id } = e.currentTarget.dataset;
@@ -214,7 +217,7 @@ Page({
 						success:()=>{
 							that.getMyOrder();
 							wx.showToast({
-								title: '已取消发布',
+								title: '已撤回发布',
 							});
 						}
 					})
@@ -406,6 +409,37 @@ Page({
 		})
 		let {orderList,myOrder,helpOrder,needOrder,tabNow,openID} = this.data;
 		switch (tabNow) {//switch分支对不同的页面实现分页
+			case 0://正在求助分页
+			db.collection('order').skip(needOrder.length).where({
+				state:'待帮助'
+			}).get({
+				success:(res)=>{
+					if(res.data.length){
+						res.data.forEach(item=>{
+							if(item.address == undefined)//未输入目的地，则办理地址为目的地
+								item.address = item.info.destination;
+							item.info = this.formatInfo(item);
+							item.stateColor = this.formatState(item.state);
+							needOrder.push(item);
+						})
+						this.setData({
+							needOrder,
+						})
+					}else{
+						wx.showToast({
+							title: '无更多信息',
+							icon:'none'
+						})
+					}
+				},
+				fail:(error) => {
+					wx.showToast({
+						title: '服务器出错...',
+						icon:'error'
+					})
+				}
+			})
+			break;
 			case 1://我的订单分页
 				db.collection('order').skip(myOrder.length).where({
 					_openid:openID
@@ -468,38 +502,7 @@ Page({
 					}
 				})
 				break;
-			case 3://正在求助分页
-				db.collection('order').skip(needOrder.length).where({
-					state:'待帮助'
-				}).get({
-					success:(res)=>{
-						if(res.data.length){
-							res.data.forEach(item=>{
-								if(item.address == undefined)//未输入目的地，则办理地址为目的地
-									item.address = item.info.destination;
-								item.info = this.formatInfo(item);
-								item.stateColor = this.formatState(item.state);
-								needOrder.push(item);
-							})
-							this.setData({
-								needOrder,
-							})
-						}else{
-							wx.showToast({
-								title: '无更多信息',
-								icon:'none'
-							})
-						}
-					},
-					fail:(error) => {
-						wx.showToast({
-							title: '服务器出错...',
-							icon:'error'
-						})
-					}
-				})
-				break;
-			default:
+			case 3://全部订单
 				db.collection('order').skip(orderList.length).get({
 					success:(res)=>{
 						if(res.data.length){

@@ -40,11 +40,9 @@
 		</picker>
 	</view>
 	<view class="bottom_tip">
-		<text>黑白 <text class="color_red">0.5元/张</text> </text>
-		<text>彩印 <text class="color_red">2元/张</text> </text>
-		<text>双面打印 <text class="color_red">张数费用×2</text> </text>
-		<text>跑腿费 <text class="color_red">1元/份</text> </text>
-		<text class="total color_red" bindtap="reflashMoney">(点击刷新费用)需支付 {{money}} 元</text>
+		<text bindtap="howMuch">收费标准</text>
+		<text>需支付</text>
+		<text bindtap="reflashMoney">{{money}} 元</text>
 		
 	</view>
 	<my-button text="立即发布" bindtap="submit"></my-button>
