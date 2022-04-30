@@ -410,7 +410,7 @@ Page({
 		let {orderList,myOrder,helpOrder,needOrder,tabNow,openID} = this.data;
 		switch (tabNow) {//switch分支对不同的页面实现分页
 			case 0://正在求助分页
-			db.collection('order').skip(needOrder.length).where({
+			db.collection('order').orderBy('createTime','desc').skip(needOrder.length).where({
 				state:'待帮助'
 			}).get({
 				success:(res)=>{
@@ -441,7 +441,7 @@ Page({
 			})
 			break;
 			case 1://我的订单分页
-				db.collection('order').skip(myOrder.length).where({
+				db.collection('order').orderBy('createTime','desc').skip(myOrder.length).where({
 					_openid:openID
 				}).get({
 					success:(res)=>{
@@ -472,7 +472,7 @@ Page({
 				})
 				break;
 			case 2://我帮助的分页
-				db.collection('order').skip(helpOrder.length).where({
+				db.collection('order').orderBy('createTime','desc').skip(helpOrder.length).where({
 					receivePerson:this.data.openID
 				}).get({
 					success:(res)=>{
@@ -503,7 +503,7 @@ Page({
 				})
 				break;
 			case 3://全部订单
-				db.collection('order').skip(orderList.length).get({
+				db.collection('order').orderBy('createTime','desc').skip(orderList.length).get({
 					success:(res)=>{
 						if(res.data.length){
 							res.data.forEach(item=>{
